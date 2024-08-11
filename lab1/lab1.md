@@ -20,7 +20,7 @@ The goal of this section is to get you familiar with the [RISC-V assembler/simul
 
 Here, we will do a software simulation of an RISC-V based system with memory-mapped input-output. Assume that the system we are simulating has LEDs mapped to the address `0x00002400`, such that the data written (using `sw`) to this address location will appear on the LEDs. Also, assume that the system has DIP switches mapped to the address `0x00002404` such that the data read from this location (using `lw`) will reflect the positions of the switches. The program which does that is provided for you, with the details mentioned below. 
 
-Simulate [sample.asm](). You should understand every line of code, and every directive, in this file - you might be quizzed on these later, *hint hint nudge nudge*. Read [RISC-V Memory Map]() to understand the program better. 
+Simulate [riscv_assembly_sample.asm](downloads/riscv_assembly_sample.asm). You should understand every line of code, and every directive, in this file - you might be quizzed on these later, *hint hint nudge nudge*. Read [RISC-V Memory Map](../rv_memmap.md) to understand the program better. 
 
 Modify the data in the location pointed to by DIPs and see if the location pointed to by LEDs reflects it. Please see the screenshot below which illustrates how to inspect/modify the memory at location `0x2400` and `0x2404`. The value you enter at the location `0x2404` before executing instruction #4 (line 28 in the file) should go into the register `s4` after instruction #4, and should be reflected at the location `0x2400` after instruction #5 (line 29 in the code). Are they exactly the same? 
 
