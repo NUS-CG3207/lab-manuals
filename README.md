@@ -17,3 +17,24 @@ If you have any questions regarding the content of any of the labs, please follo
 On that subject, please do join in and help each other out in the discussions as far as possible. 
 
 ## Lab outline
+| Lab | Description | Marks | Remarks |
+|---|---|---|---|
+| 1 | Familiarisation with HDL/FPGA and Assembly Language | 10 | Individual exercise |
+| 2 | Basic CPU design | 30 | Teams of 2 or 3 students |
+| 3 | ALU Design | 20+5$ | Teams of 2 or 3 students |
+| 4 | Advanced CPU design | 15+10$ | Teams of 2 or 3 students |
+| |**Total** | 90 | = 45% of the module grade |
+
+## Lab Schedule (Tentative)
+| Week | Week start Date | Activity | Remarks |
+|---|---|---|---|
+| 4 | 2 Sep 2024 | Lab 1 Intro |  |
+| 5 | 9 Sep 2024 | Lab 1 Demo, Lab 2 Intro |  |
+| 6 | 16 Sep 2024 | Lab 2 Consultation |  |
+| Recess | No session | Work on Lab 2 |  |
+| 7 | 30 Sep 2024 | Lab 2 Demo, Lab 3 Intro |  |
+| 8 | 7 Oct 2024 | Lab 3 Consultation |  |
+| 9 | 14 Oct 2024 | Lab 3 Demo, Lab 4 Intro |  |
+| 10 | 21 Oct 2024 | Lab 4 Consultation |  |
+| 11 | 28 Oct 2024 | Lab 4 Consultation |  |
+| 12 | 4 Nov 2024 | Lab 4 Demo |  |
