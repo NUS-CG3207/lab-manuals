@@ -97,7 +97,7 @@ Simulate your assembly language program thoroughly - else when something goes wr
 
 ## Submission Info
 
-*   You will have to demonstrate your design during your designated lab session in **Week 7**. The presentation schedule can be found at <TBA>. 
+*   You will have to demonstrate your design during your designated lab session in **Week 7**. The presentation schedule can be found at [Lab 2 Evaluation Schedule](lab2_schedule.md). 
 *   One single program demonstrating all the features would be desirable.
     
 *   Please upload a _single archive_ containing all the relevant files to Canvas within 1 hour of your demo.
