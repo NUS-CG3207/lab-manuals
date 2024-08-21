@@ -1,7 +1,7 @@
 Lab 2: Implementation of a RISC-V 32-bit (RV32I) Processor
 ==========================================================
 
-### Objective
+## Objective
 
 In this lab, you will be implementing the basic RISC-V processor supporting only limited 32-bit integer instructions.
 
@@ -18,7 +18,7 @@ Further, improve the processor by adding the following features \[HDL simulati
 
 No extra marks will be awarded for performance enhancements / adding support for more instructions (that's for Labs 3 and 4). However, lack of convincing demos (with carefully crafted assembly language programs) can result in the deduction of marks.
 
-### Design Files
+## Design Files
 
 The design files can be found here - [Lab\_2\_RV\_Template.zip](attachments/107291770/309431345.zip) (only Verilog version provided). Import all the relevant files into your project - all the .v files, as well as TOP\_<Nexys/Basys depending on your board>.vhd and uart.vhd - irrespective of whether you use UART. Choose the appropriate constraint file for your board$. The files are pretty self-explanatory. It is possible to mix VHDL and Verilog files in the same project. Note that TOP/uart.vhd is the same as that for the ARM version. All other files have differences, though in many cases, the differences are minor.
 
@@ -45,7 +45,7 @@ $It is a good idea to delay importing the constraints file and the TOP\_<board>.
 
 Wrapper.v is almost identical to that of the ARM version. The only real difference is in the memory map. A signal MemRead has also been added for better functionality of UART (this is not RISC-V specific, and should have been there for the ARM version too, ideally). The TOP\_<board>.vhd is identical to that of the ARM version.
 
-### Design Requirements
+## Design Requirements
 
 *   **You are required to simulate your design and verify its functionality.** All debugging should be done in simulation, not in hardware. Furthermore, while developing and testing your design, _you should also try synthesizing to ensure that your design is synthesizable without avoidable warnings and errors._ 
 *   All arithmetic, logical, and shift operations (except PC logic) on 32-bit numbers should be done in the ALU.
@@ -66,7 +66,7 @@ Please follow the instructions in the [RISC-V Programming](RISC-V-Programming_
 
 Simulate your assembly language program thoroughly - else when something goes wrong, you wouldn't know if the problem is with your HDL code (hardware) or the assembly language program (software).
 
-### Tips
+## Tips
 
 *   Please **SIMULATE** your design before spending your time on bitstream generation. Make sure your design synthesizes without warnings (if at all there are warnings, you should know the reasons and you should ensure that the warnings do not affect the functionality). If you don't simulate and click 'generate bitstream' hoping it would work on the board, you are probably wasting your time. This can't be emphasized enough.
 *   Synthesize modules that you edit, such as decoder and conditional logic by setting them as top-level modules even before simulation. The synthesis tool is much smarter than the simulation tool - **synthesis reports and warnings** can give you a wealth of information.
@@ -95,7 +95,7 @@ Simulate your assembly language program thoroughly - else when something goes wr
 *   The signals connected to the ports are given the same name as the ports themselves. So making the datapath connection is as easy as having a concurrent statement (VHDL) such as Opcode  <= Instr(6 downto 0) / continuous assignment (Verilog) such as assign Opcode  \= Instr\[6: 0\].
 *   Don't forget to **Relaunch** simulation (not just Restart) once you have made any changes to your HDL.
 
-### Submission Info
+## Submission Info
 
 *   You will have to demonstrate your design during your designated lab session in **Week 7**. The presentation schedule can be found at <TBA>. 
 *   One single program demonstrating all the features would be desirable.
