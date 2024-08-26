@@ -1,5 +1,6 @@
 # Lab 3: Multiplication / Division units
 
+## Tasks
 Lab 3 involves 2 compulsory tasks and one open-ended task.
 
 1) You will incorporate division (both signed and unsigned) into the MCycle unit given \[HDL simulation only\] (13 marks).
@@ -27,14 +28,12 @@ Lab 3 involves 2 compulsory tasks and one open-ended task.
 *   You can implement Booth's multiplication algorithm or other efficient algorithms you can find on the internet.
 *   DO NOT implement a single cycle multiplier - FPGAs have built in multipliers/DSP units, which are inferred when you use '\*' operator. This is much more efficient than any array adder based multipliers you can implement, but we don't want to be using it in CG3207.
 
-  
-
-### Design Instructions
+## Design Instructions
 
 *   You are required to have your own, comprehensive program to have a convincing demo. **Only one assembly language program (and hence one bitstream) will be allowed for demo**.
 *   If you are using the UART console, you can set the radix to hexadecimal in the 'Display' tab of RealTerm.
 
-### Lab 3 Submission Info
+## Lab 3 Submission Info
 
 *   Lab 3 will be evaluated in **Week 9**.
 *   Please upload the Lab 3 files to Canvas **within 1 hour of your demo in week 9**, including the following files:  
