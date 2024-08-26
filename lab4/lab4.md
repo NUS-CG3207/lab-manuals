@@ -91,7 +91,7 @@ Less than half of the weight of Lab 4 is for **performance enhancements** (**10 
 
 ## Submission Info
 
-*   Lab 4 will be evaluated in **Week 12**.
+*   Lab 4 will be evaluated in **Week 12**. The presentation schedule can be found at [Lab 4 Evaluation Schedule](lab4_schedule.md). 
 *   Include
     
     *   **.v/vhd** files you have created/modified \[ RTL Sources, Testbench(es) \] 
