@@ -9,15 +9,18 @@ Lab 3 involves 2 compulsory tasks and one open-ended task.
 *   Simulate it using a good testbench, and synthesize the MCycle unit by setting it as the top-level module to make sure it synthesizes without warnings (unless you are sure it can be ignored) before doing the next task (incorporating it into the processor).
 *   You can assume that the divisor is never zero.
 
-2) Incorporate MCycle unit into your processor so that it can execute 32-bit variants of **mul** and **divu** for RISC-V \[HDL simulation as well as hardware\] (7 marks).
+2) Incorporate MCycle unit into your processor so that it can execute 32-bit variants of **mul** and **divu** for RISC-V (MUL and DIV for ARMc3) \[HDL simulation as well as hardware\] (7 marks).
 
+*   For RISC-V, **mul** and **divu**  are available in the Multiply extension instruction set - implement the word (32-bit) versions. There is no DIV instruction in ARMv3, so DIV can be done by cannibalizing MLA instruction. The idea is to just use the format of MLA instruction, but the machine will be doing division instead. This will limit your ability to simulate in Keil assembler though. 
 *   The destination register should contain quotient. The remainder can be discarded.
-*   For RISC-V, **divu** performs unsigned division.
-*   Since **mul** writes only the 32-bit result, there is no difference between signed and unsigned variants.
+*   For RISC-V, **divu** performs unsigned division. (For ARMv3 assume DIV performs unsigned division.)
+*   Since **mul**/MUL writes only the 32-bit result, there is no difference between signed and unsigned variants.
+*   In ARMv3, multiplication instruction can set 'Z' and 'N' flags, but this functionality is not a requirement for Lab 3.
 *   Your control unit will need to be modified to generate 'Start' and 'MCycleOp' control signals.
 *   Complement of 'Busy' can be used as the write enable for the PC. This will stall the processor until the multicycle operation is complete.
 *   Your datapath should be modified to make the appropriate connections to and from the MCycle unit. You will need a multiplexer and a control signal to combine the outputs from ALU and MCycle.
-*   **div** (signed division) **mulh** variants (upper word) and **rem** variants (remainder) are not required to be implemented for RISC-V, though it takes very little extra effort (except maybe **mulhsu**).
+*   **div** (signed division) **mulh** variants (upper word) and **rem** variants (remainder) are not required to be implemented for RISC-V, though it takes very little extra effort (except maybe **mulhsu**). For ARM implementing instructions that generate 64-bit results (SMULL, UMULL, etc) is not a requirement.
+*   You can refer to the ARM Architecture Reference Manual (uploaded on Canvas), page A4-66 for MUL instruction format and page A4-54 for MLA instruction format. 
 
 3) You can improve the given **signed multiplier** implemented in step 1 to score marks for performance enhancement \[simulation, showing on hardware is left to your discretion\] (5 marks).
 
