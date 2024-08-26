@@ -5,14 +5,29 @@ Lab 4 involves 1 **compulsory task** and the rest is **open-ended.**
 
 ### Compulsory Task
 
+#### RISC-V
+
 You will need to expand the processor functionality such that it supports  \[HDL simulation as well as hardware\] (**15 marks**)
 
 *   The DP instructions that were not supported earlier (except multiply type), i.e., **xor**, **xori**, **slt**, **sltu**, **slti**, **sltiu**, **slli**, **srli**, **srai**.
 *   The branch instructions that were not supported earlier, i.e., **blt**, **bge**, **bltu**, **bgeu**, **jal** (add support for link, i.e., rd = PC+4).
 
+#### ARM
+
+You will expand the ARM processor to support **all the 16 Data Processing instructions** a.k.a ALU functions \[HDL simulation as well as hardware\] (**15 marks**)
+
+*   See Section "A3.4 Data processing instructions" in page A3-9 to A3-11 (page 75) of ARM [Architecture Reference Manual](attachments/189370034/169510502.pdf) for the details of the instructions. Page A3-11 has links to Sections 4.xx where the instruction behavior is explained in more detail. Make sure you look at the ARM (32-bit) instructions, not Thumb (16-bit) instructions.
+*   It mainly involves modifying the ALU and the ALU Decoder.
+*   The C flag has to be an output from the CondLogic component/module, to act as an input for the ALU component/module (to support ADC instruction).
+*   Implement it efficiently, hopefully without additional adders.
+*   Note the following  
+    *   You don't have to worry about how xPSR is dealt with in the special case of Rd=R15 as mentioned in the manual.
+    *   The carry flag doesn't need to be affected by shifter\_carry\_out (it is a possible enhancement, see 3rd paragraph of subsection 1 in the enhancements section below).
+    *   Note that when I bit of the instruction is 0, and bit\[7\] and bit\[4\] of the instruction are both 1's, the instruction is not a usual DP instruction (could be MUL etc.).
+
 ### Enhancements (Open-ended)
 
-Less than half of the weight of Lab 4 is for **performance enhancements** (**10 marks in total**). It is open-ended without fixed requirements. You don't have to do everything; **one significant improvement which you think is worth 10 marks is good enough**. You could try out things such as
+ Less than half of the weight of Lab 4 is for **performance enhancements** (**10 marks in total**). It is open-ended without fixed requirements. You don't have to do everything; **one significant improvement which you think is worth 10 marks is good enough**. You could try out things such as
 
 1) Implement additional instructions (the marks you get depends on how much additional logic you need to incorporate for the additional instructions) or features of instructions that are not completely implemented.
 
@@ -77,7 +92,7 @@ Less than half of the weight of Lab 4 is for **performance enhancements** (**10 
 *   Other possible exception/interrupt sources are other peripherals, illegal instruction, division by zero, etc.
 *   If you wish to have vectored interrupts, you need to associate a number with each interrupt. You need a table/ROM with the starting addresses, which will be indexed by the interrupt number. The output of this ROM is to be fed into the PC multiplexer. The PC multiplexer control signal can be the logical OR of all the interrupt lines.
 
-## Design Instructions
+### Design Instructions
 
 *   You are encouraged to have your own, comprehensive programs to have a convincing demo.
 *   You will have to tweak the templates given in Lab 2 for use in Lab 4. Specifically, you will have to change the ALUControl to 4 bits.
