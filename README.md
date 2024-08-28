@@ -19,10 +19,10 @@ On that subject, please do join in and help each other out in the discussions as
 ## Lab outline
 | Lab | Description | Marks | Remarks |
 |---|---|---|---|
-| 1 | Familiarisation with HDL/FPGA and Assembly Language | 10 | Individual exercise |
-| 2 | Basic CPU design | 30 | Teams of 2 or 3 students |
-| 3 | ALU Design | 20+5$ | Teams of 2 or 3 students |
-| 4 | Advanced CPU design | 15+10$ | Teams of 2 or 3 students |
+| 1 | [Familiarisation with HDL/FPGA and Assembly Language](lab1/lab1.md) | 10 | Individual exercise |
+| 2 | [Basic CPU design](lab2/lab2.md) | 30 | Teams of 2 or 3 students |
+| 3 | [ALU Design](lab3/lab3.md) | 20+5$ | Teams of 2 or 3 students |
+| 4 | [Advanced CPU design](lab4/lab4.md) | 15+10$ | Teams of 2 or 3 students |
 | |**Total** | 90 | = 45% of the module grade |
 
 ## Lab Schedule (Tentative)
