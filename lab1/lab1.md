@@ -32,9 +32,149 @@ Understand the assembly language instructions and the corresponding hexadecimal 
 
 ### Hardware (HDL simulation + hardware)
 
+Task: Display the Instruction (INSTR\_MEM) and Data (DATA\_CONST\_MEM) ROM contents on the physical LEDs (LEDs on the FPGA board). We are doing only a memory dump here; not executing an actual assembly language program.
+
+Templates for Verilog and VHDL for all the boards can be found in [Downloads](Downloads_107291770.html) page. Note the following:
+
+*   Whether line 29 of the assembly code (for ARM) is commented or not is fundamentally not important as we are doing only a memory dump, not executing an actual assembly language program.
+*   Choose the appropriate combination of files depending on the board and language you are using. Add only those files you need - one each of Top\_<Nexys/Basys>.v/vhd, Seven\_Seg\_<Nexys/Basys>.v, Clock\_Enable.v/vhd, Get\_MEM.v/vhd, and one .xdc file. You are **NOT** obliged to use the templates - it is perfectly fine to have your own architecture.
+*   HDL files without any board suffixes are common for all boards.
+*   HDL files are common for Nexys 4 as well as Nexys 4 DDR boards. However, the .xdc files are different for the two boards.
+*   Top and Seven\_Seg files are slightly different for Nexys and Basys boards to account for the fact that Basys has only a 4-digit seven-segment display.
+*   Seven\_Seg files are available only for Verilog, not for VHDL. The Verilog file can be used if you are using VHDL. You need not modify this file anyway. Files/modules written in the two languages can be mixed freely!
+*   Appropriate changes will be required in the project settings in Vivado depending on the board you use (See below).
+    
+    Board
+    
+    Part number
+    
+    Settings
+    
+    Nexys 4 / Nexys 4 DDR
+    
+    XC7A100T-1CSG324C
+    
+    Note : Nexys 4 / Nexys 4 DDR both use the same FPGA chip, but pin mappings and hence the .xdc file are **different**.
+    
+    If you use the wrong .xdc file, you get **no warnings at all**, (as Vivado cares only about the chip you are using, not the board) but the hardware will be non-functional!
+    
+    ![](attachments/189369659/307202123.png)
+    
+    Basys 3 
+    
+    \[Not issued in Sem 1, AY2021-22\]
+    
+    XC7A35T-1CPG236C
+    
+    ![](attachments/189369659/307201879.png)
+    
+*   In Lab 1, the assembly language code you created in the software part above (1) is not executed on hardware - we do not have a processor to execute the code yet!. Instead, you will just be dumping the binaries created from your assembly language code onto the LEDs. In other words, you are NOT going to achieve the equivalent functionality as the software above for the hardware in this lab - that is for Lab 2. You will not be using the physical DIP switches for this part.
+*   INSTR\_MEM and DATA\_CONST\_MEM ROMs have a capacity of 128 words each and store the instructions and constants in our program respectively. Note that both the memories are word addressable (not byte addressable). There are 128 locations, each location having 32 bits of content, addressed using 7 bits.
+*   \[Not needed now\] In Lab 2, we have to make sure that the assembly language programs we run on _our_ processor generate only word addresses (addresses are in multiples of 4). In _our_ processor, we will ignore the last two bits and connect the rest to address lines of the ROM.
+*   Please see the end of this section to see how to declare and use INSTR\_MEM. DATA\_CONST\_MEM is also dealt with in the same way. ROM is a combinational circuit and doesn't need a clock. Input to each ROM is a 7-bit address, and output is the 32-bit content in the addressed location.
+*   Run the Hex2ROM program, and select the .hex file generated when you build the assembly language program. This will cause the initialization of Instruction and Data ROMs to be copied to the clipboard. This can be pasted into the .v/.vhd file using Ctrl+V.
+    
+*   Display the contents of the Instruction and Data ROMs on the LEDs. As each location contains 32 bits through we have only 16 LEDs, display them in consecutive clock cycles\*, with the most significant half-word first. The rate of display should be approximately (**doesn't need to be exact**) 1 instruction/data per second (in the order of 1 instruction per second is ok). You can also optionally choose to display it on the 7-segment display (**displaying it on the LEDs is compulsory**).
+    
+*   When the instruction ROM display has been completed, display the contents of the data ROM. Do this in a cyclical manner (infinite loop). Note that each ROM has a capacity of 128 words, but you will only have a small number of valid words. Hence, depending on whether you initialize the unused memory to zero or not, the values that you get after all the instructions are finished could be zero or random. This is fine and you need not skip those zeros / random values automatically. However, note that initializing the rest of the memory to zeros could make your Verilog simulation much slower.
+    
+    for(i = n; i < 128; i = i + 1) begin  
+        INSTR\_MEM\[i\] = 32'h0;  
+    end
+    
+*   When the pushbutton BTNU is pressed, the display rate should increase to approximately 4 instructions per second (4 times the original rate, whatever the original rate was). The idea is that you will be able to run the zeros/random part faster by pressing this button.
+    
+*   When the pushbutton BTNC is pressed, the display should pause. The student should be able to pause the display and interpret a 32-bit instruction (you will need to pause it two times to see a complete instruction, as you can only display half of one instruction at a time).
+    
+*   Your hardware will have BTNU, BTNC, and clk as inputs (each is 1-bit), and LEDs (16-bit) as output. These have to be mapped to the physical BTNs and LEDs on the FPGA board using an appropriate .xdc file (see the [Getting Started manual](attachments/107291770/189369645.pdf) if you are unsure how to use design constraints). You should also uncomment the 3 lines related to clk at the beginning of the .xdc file - the create\_clock constraint is to tell the synthesis tool that our hardware works based on a 100MHz clock - info the synthesis tool needs to optimize the circuit appropriately.
+*   \[Design hint\]: You can use a 9-bit counter. Bit 0 can be used to select the upper/lower half-words. Bits 7:1 can be used as addresses to both the ROMs. Bit 8 can be used to select the output of INSTR\_MEM/DATA\_CONST\_MEM. The counter is designed such that it counts only once every ~2^26 clocks (approx) normally but will count once every ~2^24 clocks when BTNU is pressed and will pause when BTNC is pressed. This is just a suggestion - there could be other ways too to achieve the same functionality.
+*   **Please follow the guidelines given in Chapter 2** while creating your hardware. Ideally, you should use only a single clock in your entire design - the clock of every sequential device should be connected directly to this clock. i.e., you should not use a clock divider.
+*   The HDL you write should be simulated using an appropriate **testbench** before you venture into hardware implementation. It is sufficient to demo and submit the testbench for the top-level module.
+*   You may refer to the [Getting Started manual](attachments/107291770/189369645.pdf) for help with creating and simulating HDL code, as well as for .xdc creation and FPGA implementation. 
+*   Debouncing is neither necessary nor very useful for the Lab 1 problem. Debouncing is necessary in situations where, say, you need to count the number of times a button is pressed, or when the button works in a 'toggle' manner (press once to activate something, press again to deactivate) - essentially only where the exact number of times the button is pressed or released matters (contact bounce can cause one press to be counted as many). Here, your system works with one speed when it is pressed, and another speed when it is released - contact bounce is not something that affects the functionality. However, a [metastable filter](https://en.wikipedia.org/wiki/Metastability_(electronics)) could be useful, though probabilistically, it is fine without.
+
 #### Block Diagram for the system
 
 ![Block diagram](block_diagram.png)
+
+Note: The same clk (100 MHz) is driving the 9-bit counter in the design above.
+
+Using _enable_ as a clock will amount to using a clock divider.
+
+_Enable_ is a signal that has an effect synchronously, i.e., the value of _enable_ is checked only at the edges of _clk_.
+
+\*It is also fine to use a pushbutton (say, BTND) which allows us to select the half-word instead of displaying half-words over consecutive clock cycles. The selection should work even when pause (BTNC) is pressed. In this case, you use an 8-bit counter, with bits 6:0 used as addresses to both the ROMs, and bit 7 used to select INSTR\_MEM/DATA\_CONST\_MEM.
+
+The clock given by the Nexys 4 / Nexys 4 DDR / Basys 3 board is 100MHz. Use the idea illustrated above to implement a **clock enable** to slow down the speed of the target counter (count in the example below) / sequential element. Please note that the below is a sample code, you will need to modify it properly to adapt to your logic/requirements.
+
+Verilog
+
+VHDL
+
+always @(posedge clk)  
+begin  
+count\_fast <= count\_fast+1;  
+if(count\_fast == 26'h3FFFFFF) // **change it to a lower value (say 26'h0000004) for simulation\***  
+count\_slow\_enable <= 1'b1;  
+else  
+count\_slow\_enable <= 1'b0; // **1'b1 for simulation\***;  
+end  
+  
+always @(posedge clk)  
+begin  
+if(count\_slow\_enable)  
+count <= count+1;  
+end
+
+process(clk)  
+variable count\_fast :std\_logic\_vector(25 downto 0):=(others=>'0');  
+begin  
+if clk'event and clk='1' then  
+count\_fast := count\_fast+1;  
+if count\_fast = x"3FFFFFF" then -- **change it to a lower value (say x"0000004") for simulation\***  
+count\_slow\_enable <= '1';  
+else  
+count\_slow\_enable <= '0'; -- **'1' for simulation\***;  
+end if;  
+end if;  
+end process;
+
+process(clk)  
+begin  
+if clk'event and clk='1' then  
+if count\_slow\_enable = '1' then  
+count <= count+1;  
+end if;  
+end if;  
+end process;
+
+_\*Do **either** of the two depending on your situation. _Else, you might have to wait for **2^26 cycles** (for a ~1Hz clock) before you can see the effect of 1 clock edge!__
+
+  
+
+The way a ROM can be created in HDL is shown below.
+
+Language
+
+Declaration
+
+Usage
+
+Verilog
+
+reg \[31:0\] INSTR\_MEM \[0:127\] ; // instruction memory
+
+INSTR\_MEM\[<7-bit word address>\]
+
+VHDL
+
+type MEM\_128x32 is array (0 to 127) of std\_logic\_vector (31 down to 0)
+
+This is the declaration for the type MEM\_128x32. INSTR\_MEM and DATA\_CONST\_MEM need not be declared as initialization and declaration are done together
+
+INSTR\_MEM(conv\_integer(<7-bit word address>)) if the address is a std\_logic\_vector
+
+INSTR\_MEM(<7-bit word address>) if the address is an integer
 
 #### Optional Tasks (for those new to FPGAs)
 
