@@ -36,5 +36,5 @@ On that subject, please do join in and help each other out in the discussions as
 | 8 | 7 Oct 2024 | Lab 3 Consultation |  |
 | 9 | 14 Oct 2024 | Lab 3 Demo, Lab 4 Intro |  |
 | 10 | 21 Oct 2024 | Lab 4 Consultation |  |
-| 11 | 28 Oct 2024 | Lab 4 Consultation |  |
+| 11 | 28 Oct 2024 | No Lab - NUS Well-Being Day |  |
 | 12 | 4 Nov 2024 | Lab 4 Demo |  |
