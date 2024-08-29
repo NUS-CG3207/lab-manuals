@@ -17,6 +17,9 @@ If you have any questions regarding the content of any of the labs, please follo
 On that subject, please do join in and help each other out in the discussions as far as possible. 
 
 ## Lab outline
+
+All labs will be conducted in the Digital Systems and Applications laboratory, at E4A-04-08. 
+
 | Lab | Description | Marks | Remarks |
 |---|---|---|---|
 | 1 | [Familiarisation with HDL/FPGA and Assembly Language](lab1/lab1.md) | 10 | Individual exercise |
@@ -26,15 +29,15 @@ On that subject, please do join in and help each other out in the discussions as
 | |**Total** | 90 | = 45% of the module grade |
 
 ## Lab Schedule (Tentative)
-| Week | Week start Date | Activity | Remarks |
-|---|---|---|---|
-| 4 | 2 Sep 2024 | Lab 1 Intro |  |
-| 5 | 9 Sep 2024 | Lab 1 Demo, Lab 2 Intro |  |
-| 6 | 16 Sep 2024 | Lab 2 Consultation |  |
-| Recess | No session | Work on Lab 2 |  |
-| 7 | 30 Sep 2024 | Lab 2 Demo, Lab 3 Intro |  |
-| 8 | 7 Oct 2024 | Lab 3 Consultation |  |
-| 9 | 14 Oct 2024 | Lab 3 Demo, Lab 4 Intro |  |
-| 10 | 21 Oct 2024 | Lab 4 Consultation |  |
-| 11 | 28 Oct 2024 | No Lab - NUS Well-Being Day |  |
-| 12 | 4 Nov 2024 | Lab 4 Demo |  |
+| Week   | Monday Lab Date (18:00-21:00) | Friday Lab Date (09:00-12:00) | Activity                    | Remarks |
+|--------|-------------------------------|-------------------------------|-----------------------------|---------|
+| 4      | 2 Sep 2024                    | 6 Sep 2024                    | Lab 1 Intro                 |         |
+| 5      | 9 Sep 2024                    | 13 Sep 2024                   | Lab 1 Demo, Lab 2 Intro     |         |
+| 6      | 16 Sep 2024                   | 20 Sep 2024                   | Lab 2 Consultation          |         |
+| Recess | 23 Sep 2024                   | 27 Sep 2024                   | No Lab Session              |         |
+| 7      | 30 Sep 2024                   | 4 Oct 2024                    | Lab 2 Demo, Lab 3 Intro     |         |
+| 8      | 7 Oct 2024                    | 11 Oct 2024                   | Lab 3 Consultation          |         |
+| 9      | 14 Oct 2024                   | 18 Oct 2024                   | Lab 3 Demo, Lab 4 Intro     |         |
+| 10     | 21 Oct 2024                   | 25 Oct 2024                   | Lab 4 Consultation          |         |
+| 11     | 28 Oct 2024                   | 1 Nov 2024                    | No Lab - NUS Well-Being Day |         |
+| 12     | 4 Nov 2024                    | 8 Nov 2024                    | Lab 4 Demo                  |         |
