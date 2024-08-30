@@ -44,29 +44,10 @@ Templates for Verilog and VHDL for all the boards can be found in [Downloads](Do
 *   Seven\_Seg files are available only for Verilog, not for VHDL. The Verilog file can be used if you are using VHDL. You need not modify this file anyway. Files/modules written in the two languages can be mixed freely!
 *   Appropriate changes will be required in the project settings in Vivado depending on the board you use (See below).
     
-    Board
-    
-    Part number
-    
-    Settings
-    
-    Nexys 4 / Nexys 4 DDR
-    
-    XC7A100T-1CSG324C
-    
-    Note : Nexys 4 / Nexys 4 DDR both use the same FPGA chip, but pin mappings and hence the .xdc file are **different**.
-    
-    If you use the wrong .xdc file, you get **no warnings at all**, (as Vivado cares only about the chip you are using, not the board) but the hardware will be non-functional!
-    
-    ![](attachments/189369659/307202123.png)
-    
-    Basys 3 
-    
-    \[Not issued in Sem 1, AY2021-22\]
-    
-    XC7A35T-1CPG236C
-    
-    ![](attachments/189369659/307201879.png)
+| Board  | Part number | Settings |
+|--------|-------------|----------|
+| Nexys 4 / Nexys 4 DDR | XC7A100T-1CSG324C. Note : Nexys 4 / Nexys 4 DDR both use the same FPGA chip, but pin mappings and hence the .xdc file are different. If you use the wrong .xdc file, you get no warnings at all, (as Vivado cares only about the chip you are using, not the board) but the hardware will be non-functional! | ![nexys_4_config](nexys_4_config.png)|
+| Basys 3 [Not issued in Sem 1, AY2021-22] | XC7A35T-1CPG236C | ![basys_3_config.png](basys_3_config.png) |
     
 *   In Lab 1, the assembly language code you created in the software part above (1) is not executed on hardware - we do not have a processor to execute the code yet!. Instead, you will just be dumping the binaries created from your assembly language code onto the LEDs. In other words, you are NOT going to achieve the equivalent functionality as the software above for the hardware in this lab - that is for Lab 2. You will not be using the physical DIP switches for this part.
 *   INSTR\_MEM and DATA\_CONST\_MEM ROMs have a capacity of 128 words each and store the instructions and constants in our program respectively. Note that both the memories are word addressable (not byte addressable). There are 128 locations, each location having 32 bits of content, addressed using 7 bits.
@@ -107,46 +88,9 @@ _Enable_ is a signal that has an effect synchronously, i.e., the value of _enabl
 
 The clock given by the Nexys 4 / Nexys 4 DDR / Basys 3 board is 100MHz. Use the idea illustrated above to implement a **clock enable** to slow down the speed of the target counter (count in the example below) / sequential element. Please note that the below is a sample code, you will need to modify it properly to adapt to your logic/requirements.
 
-Verilog
-
-VHDL
-
-always @(posedge clk)  
-begin  
-count\_fast <= count\_fast+1;  
-if(count\_fast == 26'h3FFFFFF) // **change it to a lower value (say 26'h0000004) for simulation\***  
-count\_slow\_enable <= 1'b1;  
-else  
-count\_slow\_enable <= 1'b0; // **1'b1 for simulation\***;  
-end  
-  
-always @(posedge clk)  
-begin  
-if(count\_slow\_enable)  
-count <= count+1;  
-end
-
-process(clk)  
-variable count\_fast :std\_logic\_vector(25 downto 0):=(others=>'0');  
-begin  
-if clk'event and clk='1' then  
-count\_fast := count\_fast+1;  
-if count\_fast = x"3FFFFFF" then -- **change it to a lower value (say x"0000004") for simulation\***  
-count\_slow\_enable <= '1';  
-else  
-count\_slow\_enable <= '0'; -- **'1' for simulation\***;  
-end if;  
-end if;  
-end process;
-
-process(clk)  
-begin  
-if clk'event and clk='1' then  
-if count\_slow\_enable = '1' then  
-count <= count+1;  
-end if;  
-end if;  
-end process;
+|Verilog|VHDL|
+|-------|----|
+|always @(posedge clk) <br>begin <br> count\_fast <= count\_fast+1; <br>if(count\_fast == 26'h3FFFFFF) // **change it to a lower value (say 26'h0000004) for simulation\***  <br>count\_slow\_enable <= 1'b1;  <br>else  <br>count\_slow\_enable <= 1'b0; // **1'b1 for simulation\***;  <br>end  <br><br>always @(posedge clk)  <br>begin  <br>if(count\_slow\_enable)  <br>count <= count+1;  <br>end |process(clk)  <br>variable count\_fast :std\_logic\_vector(25 downto 0):=(others=>'0');  <br>begin  <br>if clk'event and clk='1' then  <br>count\_fast := count\_fast+1;  <br>if count\_fast = x"3FFFFFF" then -- **change it to a lower value (say x"0000004") for simulation\***  <br>count\_slow\_enable <= '1';  <br>else  <br>count\_slow\_enable <= '0'; -- **'1' for simulation\***;  <br>end if;  <br>end if;  <br>end process; <br><br>process(clk)  <br>begin  <br>if clk'event and clk='1' then  <br>if count\_slow\_enable = '1' then  <br>count <= count+1;  <br>end if;  <br>end if;  <br>end process; |
 
 _\*Do **either** of the two depending on your situation. _Else, you might have to wait for **2^26 cycles** (for a ~1Hz clock) before you can see the effect of 1 clock edge!__
 
@@ -154,29 +98,12 @@ _\*Do **either** of the two depending on your situation. _Else, you might have 
 
 The way a ROM can be created in HDL is shown below.
 
-Language
+|Language|Declaration|Usage|
+|--------|-----------|-----|
+|Verilog| reg \[31:0\] INSTR\_MEM \[0:127\] ; // instruction memory <br><br>type MEM\_128x32 is array (0 to 127) of std\_logic\_vector (31 down to 0)|INSTR\_MEM\[<7-bit word address>\] <br><br>INSTR\_MEM(conv\_integer(<7-bit word address>)) if the address is a std\_logic\_vector|
+|VHDL|This is the declaration for the type MEM\_128x32. INSTR\_MEM and DATA\_CONST\_MEM need not be declared as initialization and declaration are done together|INSTR\_MEM(<7-bit word address>) if the address is an integer|
 
-Declaration
-
-Usage
-
-Verilog
-
-reg \[31:0\] INSTR\_MEM \[0:127\] ; // instruction memory
-
-INSTR\_MEM\[<7-bit word address>\]
-
-VHDL
-
-type MEM\_128x32 is array (0 to 127) of std\_logic\_vector (31 down to 0)
-
-This is the declaration for the type MEM\_128x32. INSTR\_MEM and DATA\_CONST\_MEM need not be declared as initialization and declaration are done together
-
-INSTR\_MEM(conv\_integer(<7-bit word address>)) if the address is a std\_logic\_vector
-
-INSTR\_MEM(<7-bit word address>) if the address is an integer
-
-#### Optional Tasks (for those new to FPGAs)
+### Optional Tasks (for those new to FPGAs)
 
 Go through the [Getting Started]() manual, where the complete FPGA design flow is illustrated - design source creation and editing, simulation, synthesis, implementation, bitstream generation, and FPGA configuration. Note : For Nexys 4 / Nexys 4 DDR, the FPGA part number is XC7A100T-1CSG324C. For Basys 3 board, the FPGA part number is XC7A35T-1CPG236C. Appropriate changes will be required in the project settings.
 
@@ -197,7 +124,7 @@ Program the FPGA using the simple_count.bit given in this zip file (VHDL) or thi
 
 ## Submission Info
 
-*   Lab 3 will be evaluated in **Week 5**. The presentation schedule can be found at [Lab 1 Evaluation Schedule](lab1_schedule.md). 
+*   Lab 3 will be evaluated in **Week 5**. The presentation schedule can be found on Canvas. 
 *   Please upload the Lab 3 files to Canvas **within 1 hour of your demo in week 5**, including the following files:  
 
 	*   **.s/.asm** file (assembly language program, if you have modified it)
