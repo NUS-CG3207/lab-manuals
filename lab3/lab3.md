@@ -38,7 +38,7 @@ Lab 3 involves 2 compulsory tasks and one open-ended task.
 
 ## Submission Info
 
-*   Lab 3 will be evaluated in **Week 9**. The presentation schedule can be found at [Lab 3 Evaluation Schedule](lab3_schedule.md). 
+*   Lab 3 will be evaluated in **Week 9**. The presentation schedule can be found on Canvas. 
 *   Please upload the Lab 3 files to Canvas **within 1 hour of your demo in week 9**, including the following files:  
     
     *   **.v**/**vhd** files you have created/modified \[ RTL Sources, Testbench(es) \] 
