@@ -106,7 +106,7 @@ You will expand the ARM processor to support **all the 16 Data Processing instru
 
 ## Submission Info
 
-*   Lab 4 will be evaluated in **Week 12**. The presentation schedule can be found at [Lab 4 Evaluation Schedule](lab4_schedule.md). 
+*   Lab 4 will be evaluated in **Week 12**. The presentation schedule can be found on Canvas. 
 *   Include
     
     *   **.v/vhd** files you have created/modified \[ RTL Sources, Testbench(es) \] 
