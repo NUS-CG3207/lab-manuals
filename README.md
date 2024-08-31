@@ -16,17 +16,30 @@ If you have any questions regarding the content of any of the labs, please follo
 
 On that subject, please do join in and help each other out in the discussions as far as possible. 
 
+## Board Handling Guidelines
+
+Like most development boards and PCBs, your FPGA board is fragile. Treat it with care and respect, as if it were your own. It is reasonably expensive at over S$500, and not so easy to get replaced. 
+
+Here are some tips to take good care of your board:
+
+* Do not touch the PCB tracks, or the components on the board. Static discharge can damage or destroy electronic components, and these boards can be particularly susceptible.
+* Use the nice plastic box with foam lining to transport your FPGA board. Do not use a plastic bag or other plastic container to carry your boards, and most certainly don't put it bare in your backpack/tote/briefcase/whatever you bring to class.
+* When using the board, keep it on a stable, flat surface. Do NOT have it hanging off the USB cable, or hanging off the edge of a table, or on your lap, or anywhere that isn't a suitable, solid surface.
+* Absolutely DO NOT DROP your board. When moving it around, hold the board by the edges and make sure the USB cable is unplugged so as to minimize strain on the port and to avoid it getting caught on something.
+* Avoid plugging and unplugging the micro-USB cable more than necessary. To reset the board, you can use the power switch on the top left of the board, or unplug the USB-A connector from your computer if really necessary. Micro USB is a notoriously fragile connector, and it's best to avoid putting more strain on it than necessary. USB-A is much sturdier so that end of the cable is not as much of a concern.
+* Apply common sense and standard practices for taking care of electronics: don't eat or drink near your board in case you get crumbs (or worse, a spill) on the board. Don't throw the board around. Plug and unplug accessories with care. Be gentle when using the switches and buttons. 
+
 ## Lab outline
 
 All labs will be conducted in the Digital Systems and Applications laboratory, at E4A-04-08. 
 
-| Lab | Description | Marks | Remarks |
-|---|---|---|---|
-| 1 | [Familiarisation with HDL/FPGA and Assembly Language](lab1/lab1.md) | 10 | Individual exercise |
-| 2 | [Basic CPU design](lab2/lab2.md) | 30 | Teams of 2 or 3 students |
-| 3 | [ALU Design](lab3/lab3.md) | 20+5$ | Teams of 2 or 3 students |
-| 4 | [Advanced CPU design](lab4/lab4.md) | 15+10$ | Teams of 2 or 3 students |
-| |**Total** | 90 | = 45% of the module grade |
+| Lab | Description                                                         | Marks  | Remarks                   |
+|-----|---------------------------------------------------------------------|--------|---------------------------|
+| 1   | [Familiarisation with HDL/FPGA and Assembly Language](lab1/lab1.md) | 10     | Individual exercise       |
+| 2   | [Basic CPU design](lab2/lab2.md)                                    | 30     | Teams of 2 or 3 students  |
+| 3   | [ALU Design](lab3/lab3.md)                                          | 20+5$  | Teams of 2 or 3 students  |
+| 4   | [Advanced CPU design](lab4/lab4.md)                                 | 15+10$ | Teams of 2 or 3 students  |
+|     |**Total**                                                            | 90     | = 45% of the module grade |
 
 ## Lab Schedule (Tentative)
 | Week   | Monday Lab Date (18:00-21:00) | Friday Lab Date (09:00-12:00) | Activity                    | Remarks |
