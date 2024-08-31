@@ -16,7 +16,7 @@ This lab may seem quite confusing and tedious at first - this is normal, and not
 
 ### Software (Assembly simulation only)
 
-The goal of this section is to get you familiar with the [RISC-V assembler/simulator]() by simulating a sample program. 
+The goal of this section is to get you familiar with the [RISC-V assembler/simulator](../rv_pragramming.md) by simulating a sample program. 
 
 Here, we will do a software simulation of an RISC-V based system with memory-mapped input-output. Assume that the system we are simulating has LEDs mapped to the address `0x00002400`, such that the data written (using `sw`) to this address location will appear on the LEDs. Also, assume that the system has DIP switches mapped to the address `0x00002404` such that the data read from this location (using `lw`) will reflect the positions of the switches. The program which does that is provided for you, with the details mentioned below. 
 
