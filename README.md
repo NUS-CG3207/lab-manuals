@@ -54,3 +54,7 @@ All labs will be conducted in the Digital Systems and Applications laboratory, a
 | 10     | 21 Oct 2024                   | 25 Oct 2024                   | Lab 4 Consultation          |         |
 | 11     | 28 Oct 2024                   | 1 Nov 2024                    | No Lab - NUS Well-Being Day |         |
 | 12     | 4 Nov 2024                    | 8 Nov 2024                    | Lab 4 Demo                  |         |
+
+## License
+
+ [NUS CG3207 Lab Manuals](https://github.com/nus-cg3207/lab-manuals) © 2024 by [NUS CG3207 Team](https://github.com/nus-cg3207) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)  
