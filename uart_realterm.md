@@ -1,7 +1,5 @@
 # UART and RealTerm
 
-Created by Rajesh Chandrasekhara Panicker, last modified on 28 Aug 2022
-
 ## UART Details
 
 In the following lines, 'read's and 'write's are from the perspective of the RISC-V processor (assembly language program), and act as 'console in' and 'console out' respectively.
@@ -25,6 +23,6 @@ In the following lines, 'read's and 'write's are from the perspective of the RIS
 
 Note : The baud rate used depends on the baud rate set in TOP.vhd. In the template provided, it is 115200.
 
-![](realtermsetting2.png)
+![](realterm_setting2.png)
 
 **Figure 1(a) and 1(b)** : Screenshot illustrating RealTerm settings.
