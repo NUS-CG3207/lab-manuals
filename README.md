@@ -43,6 +43,16 @@ All labs will be conducted in the Digital Systems and Applications laboratory, a
 | 4   | [Advanced CPU design](lab4/lab4.md)                                 | 15+10$ | Teams of 2 or 3 students  |
 |     |**Total**                                                            | 90     | = 45% of the module grade |
 
+## Other useful pages
+
+[RISC-V Memory Map](rv_memmap.md)
+
+[RISC-V Programming Guide](rv_programming.md)
+
+[ARM Memory Map](arm_memmap.md)
+
+[ARM Programming Guide](arm_programming.md)
+
 ## Lab Schedule (Tentative)
 | Week   | Monday Lab Date (18:00-21:00) | Friday Lab Date (09:00-12:00) | Activity                    | Remarks |
 |--------|-------------------------------|-------------------------------|-----------------------------|---------|

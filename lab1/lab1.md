@@ -16,13 +16,13 @@ This lab may seem quite confusing and tedious at first - this is normal, and not
 
 ### Software (Assembly simulation only)
 
-The goal of this section is to get you familiar with the [RISC-V assembler/simulator](../rv_programming.md) by simulating a sample program. 
+The goal of this section is to get you familiar with the [RISC-V assembler/simulator](../rv_programming.md) and [ARM assembler/simulator](../arm_programming.md) by simulating a sample program. 
 
 Here, we will do a software simulation of an RISC-V based system with memory-mapped input-output. Assume that the system we are simulating has LEDs mapped to the address `0x00002400` (`0x00000C00` for ARM), such that the data written (using `sw` for RISC-V/`STR` for ARM) to this address location will appear on the LEDs. Also, assume that the system has DIP switches mapped to the address `0x00002404` (`0x00000C04` for ARM) such that the data read from this location (using `lw` for RISC-V/`LDR` for ARM) will reflect the positions of the switches. The program which does that is provided for you, with the details mentioned below. 
 
-Simulate [riscv_assembly_sample.asm](https://github.com/NUS-CG3207/lab-skeletons/blob/main/lab1/riscv_assembly_sample.asm). You should understand every line of code, and every directive, in this file - you might be quizzed on these later, *hint hint nudge nudge*. Read [RISC-V Memory Map](../rv_memmap.md) to understand the program better. 
+Simulate [riscv_assembly_sample.asm](https://github.com/NUS-CG3207/lab-skeletons/blob/main/lab1/riscv_assembly_sample.asm) or [arm_assembly_sample.s](https://github.com/NUS-CG3207/lab-skeletons/blob/main/lab1/arm_assembly_sample.asm). You should understand every line of code, and every directive, in this file - you might be quizzed on these later, *hint hint nudge nudge*. Read [RISC-V Memory Map](../rv_memmap.md) or [ARM Memory Map](../arm_memmap.md) to understand the program better. 
 
-Modify the data in the location pointed to by DIPs and see if the location pointed to by LEDs reflects it. Please see the screenshot below which illustrates how to inspect/modify the memory at location `0x2400`/`0xC00` and `0x2404`/`0xC04`. The value you enter at the location `0x2404`/`0xC04` before executing instruction #4 (line 28 (23 for ARM) in the file) should go into the register `s4` after instruction #4, and should be reflected at the location `0x2400` after instruction #5 (line 29 (24 for ARM) in the code). Are they exactly the same? 
+Modify the data in the location pointed to by DIPs and see if the location pointed to by LEDs reflects it. Please see the screenshot below which illustrates how to inspect/modify the memory at location `0x2400`/`0xC00` and `0x2404`/`0xC04`. The value you enter at the location `0x2404`/`0xC04` before executing instruction #4 (line 28 (23 for ARM) in the file) should go into the register `s4`/`R4` after instruction #4, and should be reflected at the location `0x2400`/`0xC00` after instruction #5 (line 29 (24 for ARM) in the code). Are they exactly the same? 
 
 ![Screenshot of addresses in RARS](rars_address_ss.png)
 
@@ -96,8 +96,6 @@ The clock given by the Nexys 4 / Nexys 4 DDR / Basys 3 board is 100MHz. Use the 
 |always @(posedge clk) <br>begin <br> count\_fast <= count\_fast+1; <br>if(count\_fast == 26'h3FFFFFF) // **change it to a lower value (say 26'h0000004) for simulation\***  <br>count\_slow\_enable <= 1'b1;  <br>else  <br>count\_slow\_enable <= 1'b0; // **1'b1 for simulation\***;  <br>end  <br><br>always @(posedge clk)  <br>begin  <br>if(count\_slow\_enable)  <br>count <= count+1;  <br>end |process(clk)  <br>variable count\_fast :std\_logic\_vector(25 downto 0):=(others=>'0');  <br>begin  <br>if clk'event and clk='1' then  <br>count\_fast := count\_fast+1;  <br>if count\_fast = x"3FFFFFF" then -- **change it to a lower value (say x"0000004") for simulation\***  <br>count\_slow\_enable <= '1';  <br>else  <br>count\_slow\_enable <= '0'; -- **'1' for simulation\***;  <br>end if;  <br>end if;  <br>end process; <br><br>process(clk)  <br>begin  <br>if clk'event and clk='1' then  <br>if count\_slow\_enable = '1' then  <br>count <= count+1;  <br>end if;  <br>end if;  <br>end process; |
 
 _\*Do **either** of the two depending on your situation. _Else, you might have to wait for **2^26 cycles** (for a ~1Hz clock) before you can see the effect of 1 clock edge!__
-
-  
 
 The way a ROM can be created in HDL is shown below.
 
