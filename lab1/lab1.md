@@ -8,7 +8,7 @@ This lab aims to teach you the tools you will need for this module - namely:
 
 * HDL simulation and FPGA implementation
 
-This lab may seem quite confusing and tedious at first - this is normal, and nothing to be worried about. It's not directly related to what you're learning in the lectures, and some/all of the tools may be new to you. You might not fully understand the connection between all of the things that you do in this lab, and that's fine. It will all likely make sense once you start doing the subsequent labs, and if it doesn't (or if you just want to understand what you're doing), feel free to ask during the lab sessions, or in the Discussions area of this repository :) 
+This lab may seem quite confusing and tedious at first - this is normal, and nothing to be worried about. It's not directly related to what you're learning in the lectures, and some/all of the tools may be new to you. You might not fully understand the connection between all of the things that you do in this lab, and that's fine. It will all likely make sense once you start doing the subsequent labs, and if it doesn't (or if you just want to understand what you're doing), feel free to ask during the lab sessions, or in the [the discussions](https://github.com/nus-cg3207/lab-skeletons/discussions)) :) 
 
 **NOTE**: Lab 1 is an **individual exercise**. While you will be in teams for later lab work, you will work on your own for this first one. 
 
@@ -18,13 +18,19 @@ This lab may seem quite confusing and tedious at first - this is normal, and not
 
 The goal of this section is to get you familiar with the [RISC-V assembler/simulator](../rv_programming.md) by simulating a sample program. 
 
-Here, we will do a software simulation of an RISC-V based system with memory-mapped input-output. Assume that the system we are simulating has LEDs mapped to the address `0x00002400`, such that the data written (using `sw`) to this address location will appear on the LEDs. Also, assume that the system has DIP switches mapped to the address `0x00002404` such that the data read from this location (using `lw`) will reflect the positions of the switches. The program which does that is provided for you, with the details mentioned below. 
+Here, we will do a software simulation of an RISC-V based system with memory-mapped input-output. Assume that the system we are simulating has LEDs mapped to the address `0x00002400` (`0x00000C00` for ARM), such that the data written (using `sw` for RISC-V/`STR` for ARM) to this address location will appear on the LEDs. Also, assume that the system has DIP switches mapped to the address `0x00002404` (`0x00000C04` for ARM) such that the data read from this location (using `lw` for RISC-V/`LDR` for ARM) will reflect the positions of the switches. The program which does that is provided for you, with the details mentioned below. 
 
-Simulate [riscv_assembly_sample.asm](downloads/riscv_assembly_sample.asm). You should understand every line of code, and every directive, in this file - you might be quizzed on these later, *hint hint nudge nudge*. Read [RISC-V Memory Map](../rv_memmap.md) to understand the program better. 
+Simulate [riscv_assembly_sample.asm](https://github.com/NUS-CG3207/lab-skeletons/blob/main/lab1/riscv_assembly_sample.asm). You should understand every line of code, and every directive, in this file - you might be quizzed on these later, *hint hint nudge nudge*. Read [RISC-V Memory Map](../rv_memmap.md) to understand the program better. 
 
-Modify the data in the location pointed to by DIPs and see if the location pointed to by LEDs reflects it. Please see the screenshot below which illustrates how to inspect/modify the memory at location `0x2400` and `0x2404`. The value you enter at the location `0x2404` before executing instruction #4 (line 28 in the file) should go into the register `s4` after instruction #4, and should be reflected at the location `0x2400` after instruction #5 (line 29 in the code). Are they exactly the same? 
+Modify the data in the location pointed to by DIPs and see if the location pointed to by LEDs reflects it. Please see the screenshot below which illustrates how to inspect/modify the memory at location `0x2400`/`0xC00` and `0x2404`/`0xC04`. The value you enter at the location `0x2404`/`0xC04` before executing instruction #4 (line 28 (23 for ARM) in the file) should go into the register `s4` after instruction #4, and should be reflected at the location `0x2400` after instruction #5 (line 29 (24 for ARM) in the code). Are they exactly the same? 
 
 ![Screenshot of addresses in RARS](rars_address_ss.png)
+
+Screenshot of addresses in RARS
+
+![Screenshot of addresses in Keil MDK](keil_address_ss.png)
+
+Screenshot of addresses in the Keil MDK
 
 Change the `DELAY_VAL` and see if the delay introduced by the delay loop changes accordingly. 
 
@@ -34,20 +40,17 @@ Understand the assembly language instructions and the corresponding hexadecimal 
 
 Task: Display the Instruction (INSTR\_MEM) and Data (DATA\_CONST\_MEM) ROM contents on the physical LEDs (LEDs on the FPGA board). We are doing only a memory dump here; not executing an actual assembly language program.
 
-Templates for Verilog and VHDL for all the boards can be found in [Downloads](Downloads_107291770.html) page. Note the following:
+Templates for Verilog and VHDL for all the boards can be found in [the skeleton file repository](https://github.com/nus-cg3207/lab-skeletons). Note the following:
 
 *   Whether line 29 of the assembly code (for ARM) is commented or not is fundamentally not important as we are doing only a memory dump, not executing an actual assembly language program.
-*   Choose the appropriate combination of files depending on the board and language you are using. Add only those files you need - one each of Top\_<Nexys/Basys>.v/vhd, Seven\_Seg\_<Nexys/Basys>.v, Clock\_Enable.v/vhd, Get\_MEM.v/vhd, and one .xdc file. You are **NOT** obliged to use the templates - it is perfectly fine to have your own architecture.
+*   Choose the appropriate combination of files depending on the language you are using. Add only those files you need - one each of Top\_Nexys.v/vhd, Seven\_Seg\_Nexys.v, Clock\_Enable.v/vhd, Get\_MEM.v/vhd, and one .xdc file. You are **NOT** obliged to use the templates - it is perfectly fine to have your own architecture.
 *   HDL files without any board suffixes are common for all boards.
 *   HDL files are common for Nexys 4 as well as Nexys 4 DDR boards. However, the .xdc files are different for the two boards.
-*   Top and Seven\_Seg files are slightly different for Nexys and Basys boards to account for the fact that Basys has only a 4-digit seven-segment display.
 *   Seven\_Seg files are available only for Verilog, not for VHDL. The Verilog file can be used if you are using VHDL. You need not modify this file anyway. Files/modules written in the two languages can be mixed freely!
-*   Appropriate changes will be required in the project settings in Vivado depending on the board you use (See below).
     
 | Board  | Part number | Settings |
 |--------|-------------|----------|
 | Nexys 4 / Nexys 4 DDR | XC7A100T-1CSG324C. Note : Nexys 4 / Nexys 4 DDR both use the same FPGA chip, but pin mappings and hence the .xdc file are different. If you use the wrong .xdc file, you get no warnings at all, (as Vivado cares only about the chip you are using, not the board) but the hardware will be non-functional! | ![nexys_4_config](nexys_4_config.png)|
-| Basys 3 [Not issued in Sem 1, AY2021-22] | XC7A35T-1CPG236C | ![basys_3_config.png](basys_3_config.png) |
     
 *   In Lab 1, the assembly language code you created in the software part above (1) is not executed on hardware - we do not have a processor to execute the code yet!. Instead, you will just be dumping the binaries created from your assembly language code onto the LEDs. In other words, you are NOT going to achieve the equivalent functionality as the software above for the hardware in this lab - that is for Lab 2. You will not be using the physical DIP switches for this part.
 *   INSTR\_MEM and DATA\_CONST\_MEM ROMs have a capacity of 128 words each and store the instructions and constants in our program respectively. Note that both the memories are word addressable (not byte addressable). There are 128 locations, each location having 32 bits of content, addressed using 7 bits.
@@ -67,11 +70,11 @@ Templates for Verilog and VHDL for all the boards can be found in [Downloads](Do
     
 *   When the pushbutton BTNC is pressed, the display should pause. The student should be able to pause the display and interpret a 32-bit instruction (you will need to pause it two times to see a complete instruction, as you can only display half of one instruction at a time).
     
-*   Your hardware will have BTNU, BTNC, and clk as inputs (each is 1-bit), and LEDs (16-bit) as output. These have to be mapped to the physical BTNs and LEDs on the FPGA board using an appropriate .xdc file (see the [Getting Started manual](attachments/107291770/189369645.pdf) if you are unsure how to use design constraints). You should also uncomment the 3 lines related to clk at the beginning of the .xdc file - the create\_clock constraint is to tell the synthesis tool that our hardware works based on a 100MHz clock - info the synthesis tool needs to optimize the circuit appropriately.
+*   Your hardware will have BTNU, BTNC, and clk as inputs (each is 1-bit), and LEDs (16-bit) as output. These have to be mapped to the physical BTNs and LEDs on the FPGA board using an appropriate .xdc file (see the [Getting Started manual](getting_started.pdf) if you are unsure how to use design constraints). You should also uncomment the 3 lines related to clk at the beginning of the .xdc file - the create\_clock constraint is to tell the synthesis tool that our hardware works based on a 100MHz clock - info the synthesis tool needs to optimize the circuit appropriately.
 *   \[Design hint\]: You can use a 9-bit counter. Bit 0 can be used to select the upper/lower half-words. Bits 7:1 can be used as addresses to both the ROMs. Bit 8 can be used to select the output of INSTR\_MEM/DATA\_CONST\_MEM. The counter is designed such that it counts only once every ~2^26 clocks (approx) normally but will count once every ~2^24 clocks when BTNU is pressed and will pause when BTNC is pressed. This is just a suggestion - there could be other ways too to achieve the same functionality.
 *   **Please follow the guidelines given in Chapter 2** while creating your hardware. Ideally, you should use only a single clock in your entire design - the clock of every sequential device should be connected directly to this clock. i.e., you should not use a clock divider.
 *   The HDL you write should be simulated using an appropriate **testbench** before you venture into hardware implementation. It is sufficient to demo and submit the testbench for the top-level module.
-*   You may refer to the [Getting Started manual](attachments/107291770/189369645.pdf) for help with creating and simulating HDL code, as well as for .xdc creation and FPGA implementation. 
+*   You may refer to the [Getting Started manual](getting_started.pdf) for help with creating and simulating HDL code, as well as for .xdc creation and FPGA implementation. 
 *   Debouncing is neither necessary nor very useful for the Lab 1 problem. Debouncing is necessary in situations where, say, you need to count the number of times a button is pressed, or when the button works in a 'toggle' manner (press once to activate something, press again to deactivate) - essentially only where the exact number of times the button is pressed or released matters (contact bounce can cause one press to be counted as many). Here, your system works with one speed when it is pressed, and another speed when it is released - contact bounce is not something that affects the functionality. However, a [metastable filter](https://en.wikipedia.org/wiki/Metastability_(electronics)) could be useful, though probabilistically, it is fine without.
 
 #### Block Diagram for the system
@@ -105,7 +108,7 @@ The way a ROM can be created in HDL is shown below.
 
 ### Optional Tasks (for those new to FPGAs)
 
-Go through the [Getting Started]() manual, where the complete FPGA design flow is illustrated - design source creation and editing, simulation, synthesis, implementation, bitstream generation, and FPGA configuration. Note : For Nexys 4 / Nexys 4 DDR, the FPGA part number is XC7A100T-1CSG324C. For Basys 3 board, the FPGA part number is XC7A35T-1CPG236C. Appropriate changes will be required in the project settings.
+Go through the [Getting Started](getting_started.pdf) manual, where the complete FPGA design flow is illustrated - design source creation and editing, simulation, synthesis, implementation, bitstream generation, and FPGA configuration. Note : For Nexys 4 / Nexys 4 DDR, the FPGA part number is XC7A100T-1CSG324C. For Basys 3 board, the FPGA part number is XC7A35T-1CPG236C. Appropriate changes will be required in the project settings.
 
 This manual provides an illustration of the tools you will use in CG3207 through examples of a simple combinational (full adder) and a simple sequential circuit (16-bit shift register). It will familiarize you with industry leader Xilinx's Vivado Design Suite - a comprehensive integrated development environment (IDE) for FPGA design flow, Digilent Inc.'s Nexys 4 Development Board featuring an FPGA from Xilinx's state-of-the-art Artix-7 family, and VHDL/Verilog.
 

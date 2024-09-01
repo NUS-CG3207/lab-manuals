@@ -1,14 +1,14 @@
 # RISC-V Programming
 
-Use RARS assembler / simulator which can be downloaded from [https://github.com/TheThirdOne/rars/releases/tag/continuous](https://github.com/TheThirdOne/rars/releases/tag/continuous). This requires Java to be installed in your system. You can install java from [https://java.com/en/download/](https://java.com/en/download/).
+Use RARS assembler / simulator which can be downloaded [from their GitHub repository](https://github.com/TheThirdOne/rars/releases/tag/continuous). This requires Java to be installed in your system; Java 8 is available [here](https://java.com/en/download/).
 
-The .jar program can be run by double-clicking it. It is portable across operating systems and needs no installation. It is a very simple and easy to use application.
+The .jar program can be run by double-clicking it. It is portable across operating systems and needs no installation. It is a very simple and easy to use application. Linux users may need to use `java -jar filename.jar` - note the `-jar` option required to run a Java archive. 
 
-You can use this sample assembly language program - [riscv\_assembly\_sample.asm](downloads/lab1/riscv_assembly_sample.asm) to get started. You can download it, and open with RARS - **File** **\>** **Open**. Note : RARS assumes that SP(x2) and GP(x3) are initialized to 0x3ffc and 0x1800 respectively, and other registers are initialized to 0s. In the register file provided in the templates, only register zero (x0) is guaranteed to be 0, and others are uninitialized. You need to write a value to all registers other than x0 before you read them.
+You can use [riscv_assembly_sample.asm](https://github.com/NUS-CG3207/lab-skeletons/blob/main/lab1/riscv_assembly_sample.asm) to get started. Download it, and open with RARS - **File** **\>** **Open**. Note : RARS assumes that SP(x2) and GP(x3) are initialized to 0x3ffc and 0x1800 respectively, and other registers are initialized to 0s. In the register file provided in the templates, only register zero (x0) is guaranteed to be 0, and others are uninitialized. You need to write a value to all registers other than x0 before you read them.
 
 **Settings > Memory Configuration >** Select **Compact, Text at Address 0** > **Apply and Close**.
 
-Write/modify the code as necessary. You may want to look at these pages - [https://github.com/TheThirdOne/rars/wiki/Supported-Instructions](https://github.com/TheThirdOne/rars/wiki/Supported-Instructions), [https://github.com/TheThirdOne/rars/wiki/Assembler-Directives](https://github.com/TheThirdOne/rars/wiki/Assembler-Directives).
+Write/modify the code as necessary. You may want to look at these pages - [RARS Supported Instructions](https://github.com/TheThirdOne/rars/wiki/Supported-Instructions), [Assembly Directives](https://github.com/TheThirdOne/rars/wiki/Assembler-Directives).
 
 **Run > Assemble**.
 
@@ -28,7 +28,7 @@ Save the hex values of instruction memory followed by data memory in a file with
     00000001
     00000002
 
-Run the python [script](convert_to_verilog.py) with the command:
+Run the [Python script](https://github.com/NUS-CG3207/lab-skeletons/blob/main/convert_to_verilog.py) with the command:
 
     python convert_to_verilog.py
 

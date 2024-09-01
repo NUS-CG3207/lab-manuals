@@ -2,13 +2,15 @@
 
 Welcome to CG3207! In this repository, you will find the manuals for each of the 4 lab exercises you will complete for this course, as well as instructions on how to set up the tools you'll need. 
 
+[The skeleton file repository](https://github.com/nus-cg3207/lab-skeletons) contains all the files you need to download. 
+
 ## How to get help
 
 If you have any questions regarding the content of any of the labs, please follow these steps, *in this order*, to answer them.  
 
 1. Please read the lab manual closely. We will try our best to keep the manual updated with any common errors, or issues, that you may face. 
 
-2. If the lab manual does not answer your question, this repository has an [discussions page](https://github.com/nus-cg3207/lab-manuals/discussions). Please search here for your question, in case it has already been answered before. We will leave questions and answers from previous semesters on this page, so over time, more and more information should be covered between here and the manuals. 
+2. If the lab manual does not answer your question, [the skeleton file repository](https://github.com/nus-cg3207/lab-skeletons) has a [discussions page](https://github.com/NUS-CG3207/lab-skeletons/discussions). Please search here for your question, in case it has already been answered before. We will leave questions and answers from previous semesters on this page, so over time, more and more information should be covered between here and the manuals. 
 
 3. If you cannot find an answer to your question in the discussions either, then please create a new discussion. Make sure your title is as succinct, but descriptive, as possible, for the benefit of others who may search the issues page later. Also, do make sure you include all relevant details in the discussion content. [This webpage](https://www.freecodecamp.org/news/how-to-ask-good-technical-questions/) offers some helpful advice on how to ask good technical questions. 
 
