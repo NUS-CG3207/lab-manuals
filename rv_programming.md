@@ -34,6 +34,6 @@ Run the [Python script](https://github.com/NUS-CG3207/lab-skeletons/blob/main/co
 
 This script will output the code in memory_initialization.v
 
-Now, you can **copy-paste** this as contents of the **instruction memory initialization** and **data memory initialization** in **Wrapper.v**. Align it properly by inserting 3 tabs in front.
+Now, you can **copy-paste** this as contents of the **instruction memory initialization** and **data memory initialization** in **Get_MEM.v/Wrapper.v**. Align it properly by inserting 3 tabs in front.
 
 Note : The memory-mapped peripherals of RARS use a different address as compared to the one used by Wrapper. We will stick with the addresses in the Wrapper, and use memory locations to simulate the effect of peripherals - the peripherals in RARS have a slightly different behavior as compared to the one implemented in Wrapper/TOP. This can be changed in the Wrapper if need be though.
