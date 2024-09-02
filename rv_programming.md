@@ -14,19 +14,17 @@ Write/modify the code as necessary. You may want to look at these pages - [RARS
 
 Debug and see if the program runs as intended. The standard debugging options are available. You can single step, run until a breakpoint (breakpoints are set using the checkboxes next to assembled code), backstep (a cool feature which not many simulators support), pause, stop, reset.
 
-**File > Dump Memory**. You can also do so by clicking the button in the toolbar as shown below. First, select the .text memory segment. Save it as Hexadecimal text with a \_text.hex suffix (say, program1\_text.hex)
+**File > Dump Memory**. You can also do so by clicking the button in the toolbar as shown below. First, select the .text memory segment. Save it as Hexadecimal text with a \_text.hex suffix (say, program1\_text.hex). This is the instruction memory.
 
 ![](mem_dump.png)
 
-**Do the same thing with .data too**, unless your program doesn't use any non-immediate constants at all.
+**Do the same thing with .data too**, and save it in a different file, unless your program doesn't use any non-immediate constants at all. This is the data memory. 
 
 Save the hex values of instruction memory followed by data memory in a file with name instructions_data.hex in the format:
 
-    e1234567
-    e1234567
+    //Copy paste hex values dumped from .text and remove comment
     DATA
-    00000001
-    00000002
+    //Copy paste hex values dumped from .data and remove comment
 
 Run the [Python script](https://github.com/NUS-CG3207/lab-skeletons/blob/main/convert_to_verilog.py) with the command:
 
