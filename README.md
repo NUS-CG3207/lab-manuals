@@ -45,6 +45,8 @@ All labs will be conducted in the Digital Systems and Applications laboratory, a
 
 ## Other useful pages
 
+[Vivado Installation Guide](vivado_install_guide/vivado_install_guide.md)
+
 [RISC-V Memory Map](rv_memmap.md)
 
 [RISC-V Programming Guide](rv_programming.md)
