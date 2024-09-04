@@ -14,9 +14,9 @@ We will be using Keil MDK 4 as it comes with a built in simulator\* for many ARM
 *   You will get a device selection screen. Expand ARM and choose ARM7 (Little Endian).
 *   On the project pane on the left, expand 'Target 1' > right-click on Source Group 1. Select 'Add files to Group Source Group 1'.
 *   In the file selection window that comes up, in the drop-down list, change 'Files of type' to 'Asm Source file (\*.s\*, \*.src, \*.a\*)'. Browse to the folder containing the assembly language source (.s) file and click 'Add'. Click 'Close' to dismiss the window (it won't disappear even after you select a file).
-*   Use this sample assembly language program - [ARM\_sample.s](https://github.com/NUS-CG3207/lab-skeletons/blob/main/lab1/arm_assembly_sample.s) ([here](old_arm_sample.s) is an older version). **Please read the instructions in the comments carefully**. The example code will produce this error when you execute the instruction in line 39 (line 30 in the older version) - _error 65: access violation at 0x00000804 : no 'write' permission_. However, this does not cause any problem in real hardware - say, if you try this code on the processor you will be designing in Lab 2. Why?
+*   Use this sample assembly language program - [ARM\_sample.s](https://github.com/NUS-CG3207/lab-skeletons/blob/main/lab1/arm_assembly_sample.s). **Please read the instructions in the comments carefully**. The example code will produce this error when you execute the instruction in line 39 (line 30 in the older version) - _error 65: access violation at 0x00000804 : no 'write' permission_. However, this does not cause any problem in real hardware - say, if you try this code on the processor you will be designing in Lab 2. Why?
 *   Screenshots illustrating settings are given below. To bring up the window : Project -> Options for Target 'Target 1'. Note that the correct window might come up only on the second try - thanks to the wonderful (sarcasm intended) Keil UI.
-*   Use [this file](MMIO.ini) (MMIO.ini) in Project -> Options for Target -> Debug -> Initialisation file (see the screenshot below).
+*   Use this file [MMIO.ini](https://github.com/NUS-CG3207/lab-skeletons/blob/main/lab1/MMIO.ini) in Project -> Options for Target -> Debug -> Initialisation file (see the screenshot below).
 
 ![](arm_option_target1.png)
 
@@ -49,7 +49,7 @@ We will be using Keil MDK 4 as it comes with a built in simulator\* for many ARM
     *   Instead of the pseudo-instruction LDR  R2, =variable1; use LDR R2, variable1\_addr and variable1\_addr DCD variable1. 
     *   This will allow us to have control over where exactly variable1\_addr is stored in the memory, which will make things easier when we insert our program into the Instruction (code) and Data (constant) ROMs created in the FPGA (in Lab 2).
     *   Keil/ARM assembler supports pseudo-instructions, but we just avoid it for the reason mentioned above.
-*   You can refer to [ARM Architecture Reference Manual.pdf](ARM_Architecture_Reference_Manual.pdf) to see ARMv3 instruction set architecture.
+*   You can refer to [ARM Architecture Reference Manual.pdf](https://canvas.nus.edu.sg/courses/62251/files/folder/Lab%20Resources?preview=4733362) to see ARMv3 instruction set architecture.
 
 ### Debugging Instructions
 
