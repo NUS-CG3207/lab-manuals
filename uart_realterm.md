@@ -17,7 +17,7 @@ In the following lines, 'read's and 'write's are from the perspective of the RIS
 
 ## Realterm
 
-[Realterm](Realterm_3.0.1.44_setup.exe) is an amazing serial monitor program, which could be very useful. You can use this for sending and receiving data through the UART console. Teraterm (used in EE2028) is fine too, just that RealTerm is TeraTerm on steriods. RealTerm needs [.NET framework](NDP472-KB4054531-Web.exe) to be installed.
+[Realterm](https://canvas.nus.edu.sg/courses/62251/files/folder/Lab%20Resources?preview=4733363) is an amazing serial monitor program, which could be very useful. You can use this for sending and receiving data through the UART console. Teraterm (used in EE2028) is fine too, just that RealTerm is TeraTerm on steriods. RealTerm needs [.NET framework](https://canvas.nus.edu.sg/courses/62251/files/folder/Lab%20Resources?preview=4733365) to be installed.
 
 ![](realterm_setting1.png)
 
