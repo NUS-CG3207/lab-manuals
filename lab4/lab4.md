@@ -16,7 +16,7 @@ You will need to expand the processor functionality such that it supports  \[HD
 
 You will expand the ARM processor to support **all the 16 Data Processing instructions** a.k.a ALU functions \[HDL simulation as well as hardware\] (**15 marks**)
 
-*   See Section "A3.4 Data processing instructions" in page A3-9 to A3-11 (page 75) of ARM [Architecture Reference Manual](attachments/189370034/169510502.pdf) for the details of the instructions. Page A3-11 has links to Sections 4.xx where the instruction behavior is explained in more detail. Make sure you look at the ARM (32-bit) instructions, not Thumb (16-bit) instructions.
+*   See Section "A3.4 Data processing instructions" in page A3-9 to A3-11 (page 75) of ARM [Architecture Reference Manual](https://canvas.nus.edu.sg/courses/62251/files/folder/Lab%20Resources?preview=4733362) for the details of the instructions. Page A3-11 has links to Sections 4.xx where the instruction behavior is explained in more detail. Make sure you look at the ARM (32-bit) instructions, not Thumb (16-bit) instructions.
 *   It mainly involves modifying the ALU and the ALU Decoder.
 *   The C flag has to be an output from the CondLogic component/module, to act as an input for the ALU component/module (to support ADC instruction).
 *   Implement it efficiently, hopefully without additional adders.
