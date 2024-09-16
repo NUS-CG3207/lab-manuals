@@ -24,14 +24,14 @@ The design files can be found here - [Lab\_2\_Template\_files](https://github.c
 
 The file hierarchy is as follows
 
-*   TOP\_<board>.vhd (top-level module for hardware implementation) → Wrapper.v (unit under test for simulation) → RV.v → Components of RV (CondLogic.v, Decoder.v, ALU.v etc).
+*   TOP\_<board>.vhd (top-level module for hardware implementation) → Wrapper.v (unit under test for simulation) → RV.v → Components of RV (PC_Logic.v, Decoder.v, ALU.v etc).
 *   TOP\_<board>.vhd → uart.vhd
-*   test\_Wrapper.v (top-level module for simulation) → Wrapper.v (unit under test for simulation) → RV.v → Components of RV (CondLogic.v, Decoder.v, ALU.v etc).
+*   test\_Wrapper.v (top-level module for simulation) → Wrapper.v (unit under test for simulation) → RV.v → Components of RV (PC_Logic.v, Decoder.v, ALU.v etc).
 *   ALU.v → Shifter.v
 
 Ensure that the top-level module is set correctly in your project. It should be TOP (TOP\_<board>.vhd) for implementation, and test\_Wrapper for simulation. It can be set by right-clicking the appropriate file under Design sources (for implementation) and Simulation sources (for simulation) and choosing Set as Top.
 
-There are basically 4 files you need to populate / modify  - **CondLogic.v** , **Decoder.v** , **RV.v** ; **y**ou will also need to paste your code / constant memories into **Wrapper.v** (see the section on RISCV Programming Instructions below).  A 5th file, **ALU.v** should also be modified to incorporate shifts.
+There are basically 4 files you need to populate / modify  - **PC_Logic.v** , **Decoder.v** , **RV.v** ; **y**ou will also need to paste your code / constant memories into **Wrapper.v** (see the section on RISCV Programming Instructions below).  A 5th file, **ALU.v** should also be modified to incorporate shifts.
 
 Some other important considerations :
 
@@ -50,7 +50,7 @@ Wrapper.v is almost identical to that of the ARM version. The only real differen
 *   **You are required to simulate your design and verify its functionality.** All debugging should be done in simulation, not in hardware. Furthermore, while developing and testing your design, _you should also try synthesizing to ensure that your design is synthesizable without avoidable warnings and errors._
 *   Learn how to use debugging options such as single stepping, breakpoints, running for a specified time, etc which can help tremendously. However, note that some options such as single stepping work a bit differently from conventional software debugging, due to the inherent parallel nature of HDLs, as well as the fact that non-blocking assignments do not have an instantaneous effect on the LHS.
 *   All arithmetic, logical, and shift operations (except PC logic) on 32-bit numbers should be done in the ALU.
-*   **DO NOT create additional entities/modules**. Components such as multiplexers are easily implemented using when-else / with-select / if / case statements. Leave CondLogic and Decoder separate (do not combine them into one ControlUnit entity). However, the interfaces for entities could be modified slightly to meet the design requirements.
+*   **DO NOT create additional entities/modules**. Components such as multiplexers are easily implemented using when-else / with-select / if / case statements. Leave PC_Logic and Decoder separate (do not combine them into one ControlUnit entity). However, the interfaces for entities could be modified slightly to meet the design requirements.
     *   DO NOT modify the ports of the entity RISC-V, unless you want to take responsibility for the top-level wrapper module.
 *   It is a good idea to use '-' (VHDL) or 'X' (Verilog) for don't cares, as it could simplify the combinational logic. However, there are 2 issues
     *   Using don't cares with signals which change the processor state (RegWrite, PCSrc, MemWrite) would make the system vulnerable to illegal instructions.
