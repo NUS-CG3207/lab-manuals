@@ -22,7 +22,7 @@ Lab 3 involves 2 compulsory tasks and one open-ended task.
 *   **div** (signed division) **mulh** variants (upper word) and **rem** variants (remainder) are not required to be implemented for RISC-V, though it takes very little extra effort (except maybe **mulhsu**). For ARM implementing instructions that generate 64-bit results (SMULL, UMULL, etc) is not a requirement.
 *   You can refer to the ARM Architecture Reference Manual (uploaded on Canvas), page A4-66 for MUL instruction format and page A4-54 for MLA instruction format. 
 
-3) You can improve the given **signed multiplier** implemented in step 1 to score marks for performance enhancement \[simulation, showing on hardware is left to your discretion\] (5 marks).
+3) You can improve the given **signed multiplier** implemented in step 1 to score marks for performance enhancement \[Post-synthesis simulation; showing on hardware is left to your discretion\] (5 marks).
 
     Some suggestions for improvement are given below. You need not do all of them. **Keep in mind that performance improvement carries only 5 marks**, and we will be evaluating only one improvement. The purpose is to incentivize some exploration. However, **spending too much time on this is not recommended**.
 
