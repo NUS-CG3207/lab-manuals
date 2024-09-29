@@ -16,7 +16,7 @@ Further, improve the processor by adding the following features \[HDL simulati
 *   **lui**, **auipc** (5 marks)
 *   **sll**, **srl**, **sra** (5 marks)
 
-No extra marks will be awarded for performance enhancements / adding support for more instructions (that's for Labs 3 and 4). However, lack of convincing demos (with carefully crafted assembly language programs) can result in the deduction of marks.
+No extra marks will be awarded for performance enhancements / adding support for more instructions (that's for Labs 3 and 4). However, a lack of convincing demos (with carefully crafted assembly language programs) can result in the deduction of marks.
 
 ## Design Files
 
@@ -41,9 +41,9 @@ Some other important considerations :
     
 *   Read the comments (especially about the input and output ports / interfaces) in the Wrapper.v carefully.
 
-$It is a good idea to delay importing the constraints file and the TOP\_<board>.vhd file until you are ready to test on hardware. Not having the constraints file during the design / simulation phase can help avoid some warnings related to synthesis when you try synthesizing a module which does not have the interfaces specified in the constraints file.
+$It is a good idea to delay importing the constraints file and the TOP\_<board>.vhd file until you are ready to test on hardware. Not having the constraints file during the design / simulation phase can help avoid some warnings related to synthesis when you try synthesizing a module that does not have the interfaces specified in the constraints file.
 
-Wrapper.v is almost identical to that of the ARM version. The only real difference is in the memory map. A signal MemRead has also been added for better functionality of UART (this is not RISC-V specific, and should have been there for the ARM version too, ideally). The TOP\_<board>.vhd is identical to that of the ARM version.
+Wrapper.v is almost identical to that of the ARM version. The only real difference is in the memory map. A signal MemRead has also been added for better functionality of UART. The TOP\_<board>.vhd is identical to that of the ARM version.
 
 ## Design Requirements
 
@@ -84,14 +84,14 @@ Simulate your assembly language program thoroughly - else when something goes wr
         
     *   create\_clock:No valid object(s) found for '-objects \[get\_ports CLK\_undiv\]'.  
         
-*   You can get a very very good sense of whether it will work on hardware by doing a **post-synthesis functional simulation** after setting the Wrapper as the top-level module for synthesis > synthesize > simulate and choosing post-synthesis functional simulation. The same testbench can be used, so it requires zero extra effort. However, debugging is much harder than it is with behavioral simulation as some of the internal signals are optimized away and/or renamed (still easier than it is with hardware).
+*   You can get a very very good sense of whether it will work on hardware by doing a **post-synthesis functional simulation** by Simulate > Post-synthesis functional simulation. The same testbench can be used, so it requires zero extra effort. However, debugging is much harder than it is with behavioral simulation as some of the internal signals are optimized away and/or renamed (still easier than it is with hardware). For post-synthesis functional simulation, either the Wrapper or the TOP should be set as the top-level module for synthesis, and then the module should be synthesized before it can be (Post-synthesis) simulated.
 *   By default, Vivado will run significantly slower in Windows than in Linux, due to the differences in the number of threads used. A workaround is mentioned here - https://docs.amd.com/r/2021.2-English/ug904-vivado-implementation/Multithreading-with-the-Vivado-Tools
 *   If you try to run the design from a 100 MHz clock directly (CLK\_DIV\_BITS = 0, i.e., without dividing the clock), you will most certainly get a critical warning that the timing constraints are not met (Why?).  Your design may or may not work on hardware, and it is unreliable even if it works. A pipelined design (Lab 4) should work directly from 100 MHz. 
 *   You can go into the subunits and see their value for each instruction (Scope-Objects) - this is much easier than what most of you think. This is more powerful than dragging the various signals into the waveform. Note that the values you see are those at the time the simulation has stopped/paused, not the time corresponding to the yellow vertical bar in the waveforms window. Double-clicking the Scope-Objects will lead you to the source code - you can then hover the mouse pointer above various objects to see their values.
 *   Make sure your radix in the waveform window / Scope-Objects is set correctly. Looking at hexadecimal and assuming them to be decimal or vice versa is a common mistake. Saving the waveform window (.wcfg) and adding it to the project will ensure that such settings get saved. For Console input/output, setting the radix to ASCII can be useful.
 *   Have the RARS simulator side by side so that you can compare the register/memory values between that in RARS and HDL register/memory objects. While you single step in RARS, you can also run by 10 more ns to have the same effect in HDL simulation. It helps to have the PC and Instr values in the waveform window to see the correspondence between RARS and HDL simulations, i.e., to ensure that you are looking at the same instruction on the two tools.
 *   If you get a number of warnings (~100) about unconnected stuff being removed, chances are that you haven't initialized the ROMs.
-*   To see the output on LEDs, you need to have the LEDs changing state slow enough. There are two ways to do it - 1) by using a slow clock for the processor. This is done by setting the CLK\_DIV\_BITS to a value of around 26. 2) by having a fast clock CLK\_DIV\_BITS = 1 for 50MHz), but using software delays (using a high value for DELAY\_VAL between LED writes).
+*   The default processor clock frequency is 5 MHz which is ideal for UART, but too fast for LEDs - you will see the LEDs constantly lit, but different LEDs may have different brightness (why?). To see the output on LEDs, you need to have the LEDs changing state slow enough. There are two ways to do it - 1) by using a slow clock for the processor. This is done by setting the CLK\_DIV\_BITS to a value of around 26. 2) by having a fast clock CLK\_DIV\_BITS = 1 for 50MHz), but using software delays (using a high value for DELAY\_VAL between LED writes).
     
     However, note that you should use a very low DELAY\_VAL during simulation. Else, you might have to run simulation for a long time to get past the delay. Make sure you change either of them to a high value before implementation / bitstream generation  
     Similar considerations apply while sending data via UART.
