@@ -48,10 +48,11 @@ Wrapper.v is almost identical to that of the ARM version. The only real differen
 ## Design Requirements
 
 *   **You are required to simulate your design and verify its functionality.** All debugging should be done in simulation, not in hardware. Furthermore, while developing and testing your design, _you should also try synthesizing to ensure that your design is synthesizable without avoidable warnings and errors._
-*   All arithmetic, logical, and shift operations on 32-bit numbers should be done in the ALU, except PC+ (PC_IN) computation.
-    * You should use '+' on 32-bit numbers only in 2 statements -> one to compute the new PC value (PC_IN), and one statement in ALU.
+*   All arithmetic, logical, and shift operations on 32-bit numbers should be done in the ALU, except for the new PC (PC+ aka PC_IN) computation.
+    * You should use '+' on 32-bit numbers only in 2 statements -> one to compute the new PC value, and one statement in ALU.
         * In other words, only 2 32-bit adders can be used in the whole system.
         * A single-cycle processor cannot be implemented with less than 2 adders, but a multi-cycle design can be - this will require the ALU to be used for PC increment in a second cycle for the same instructions.
+    * Do not implement your own carry look ahead or ripple carry adders. The '+' operator synthesizes a circuit that makes use of the built-in carry acceleration logic built into most FPGAs (carry chain, carry lookahead logic - Google for CARRY4). However, if you insist on implementing your own adder logic for the sake of learning, please go ahead. It will use the general-purpose fabric/routing, which will almost certainly be slower (doesn't matter for lower frequencies though).
     * "=" should not be used on 32-bit numbers for Lab 2.
         * The comparison for conditional branch should be done inside the ALU through subtraction.
         * "=" may be used in other places such as the control unit, to implement multiplexers in the datapath, for checking the value of counter(s) for Lab 3 MCycle unit, etc., but this comparison is done on values that are much less than 32 bits.
