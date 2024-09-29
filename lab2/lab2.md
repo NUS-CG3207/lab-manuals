@@ -48,8 +48,15 @@ Wrapper.v is almost identical to that of the ARM version. The only real differen
 ## Design Requirements
 
 *   **You are required to simulate your design and verify its functionality.** All debugging should be done in simulation, not in hardware. Furthermore, while developing and testing your design, _you should also try synthesizing to ensure that your design is synthesizable without avoidable warnings and errors._
-*   Learn how to use debugging options such as single stepping, breakpoints, running for a specified time, etc which can help tremendously. However, note that some options such as single stepping work a bit differently from conventional software debugging, due to the inherent parallel nature of HDLs, as well as the fact that non-blocking assignments do not have an instantaneous effect on the LHS.
-*   All arithmetic, logical, and shift operations (except PC logic) on 32-bit numbers should be done in the ALU.
+*   All arithmetic, logical, and shift operations on 32-bit numbers should be done in the ALU, except PC+ (PC_IN) computation.
+    * You should use '+' on 32-bit numbers only in 2 statements -> one to compute the new PC value (PC_IN), and one statement in ALU.
+        * In other words, only 2 32-bit adders can be used in the whole system.
+        * A single-cycle processor cannot be implemented with less than 2 adders, but a multi-cycle design can be - this will require the ALU to be used for PC increment in a second cycle for the same instructions.
+    * "=" should not be used on 32-bit numbers for Lab 2.
+        * The comparison for conditional branch should be done inside the ALU through subtraction.
+        * "=" may be used in other places such as the control unit, to implement multiplexers in the datapath, for checking the value of counter(s) for Lab 3 MCycle unit, etc., but this comparison is done on values that are much less than 32 bits.
+        * You may need "=" on 32-bit numbers in Lab 4 if you are implementing branch prediction, but that is optional and far away from where we are now :).
+    * All Shift operations on 32-bit numbers should be done in the Shifter unit.
 *   **DO NOT create additional entities/modules**. Components such as multiplexers are easily implemented using when-else / with-select / if / case statements. Leave PC_Logic and Decoder separate (do not combine them into one ControlUnit entity). However, the interfaces for entities could be modified slightly to meet the design requirements.
     *   DO NOT modify the ports of the entity RISC-V, unless you want to take responsibility for the top-level wrapper module.
 *   It is a good idea to use '-' (VHDL) or 'X' (Verilog) for don't cares, as it could simplify the combinational logic. However, there are 2 issues
@@ -64,6 +71,7 @@ Wrapper.v is almost identical to that of the ARM version. The only real differen
 *   You could use the program that you simulated in RARS in Lab 1 as a starting point if you have implemented **lui** and **auipc***. However, you will need to make appropriate modifications to include instructions such as **DP reg type**, **bne**, and shifts in a meaningful manner. The test\_Wrapper should be modified to give appropriate stimuli, as mentioned in the previous point. *You can use it even before incorporating lui and auipc, but you will need to change it such that s1 and s2 are loaded from memory.
 *   There is no requirement that you should use all the peripherals supported by the Wrapper. As long as your demo is convincing, it is fine to use only a limited set of peripherals (say, LEDs and DIP switches \- at least one input and one output). [RISC-V Memory Map](../rv_memmap.md) page has more details about the address and usage of the supported peripherals.
 *   You can add more peripherals (RGB LED, accelerometer, VGA display, etc.) to the Wrapper if you wish. The corresponding changes will also need to be done in the top-level .vhd and .xdc files.
+*   Learn how to use debugging options such as single stepping, breakpoints, running for a specified time, etc which can help tremendously. However, note that some options such as single stepping work a bit differently from conventional software debugging, due to the inherent parallel nature of HDLs, as well as the fact that non-blocking assignments do not have an instantaneous effect on the LHS. Some additional info is given in the Tips section, and there is a demo on this during the lab briefing.
 
 ### RISC Programming Instructions
 
