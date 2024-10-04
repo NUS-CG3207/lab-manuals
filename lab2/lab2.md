@@ -20,7 +20,7 @@ No extra marks will be awarded for performance enhancements / adding support for
 
 ## Design Files
 
-The design files can be found here - [Lab\_2\_Template\_files](https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2) (Only Verilog version provided. ChatGPT can help you convert this to VHDL pretty well if you are a fan of VHDL). Import all the relevant files into your project - all the .v files, as well as TOP\_<Nexys/Basys depending on your board>.vhd and uart.vhd - irrespective of whether you use UART. Choose the appropriate constraint file for your board$. The files are pretty self-explanatory. It is possible to mix VHDL and Verilog files in the same project. Note that TOP/uart.vhd is the same as that for the ARM version. All other files have differences, though in many cases, the differences are minor.
+The design files can be found here - [Lab\_2\_Template\_files](https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2) (Only Verilog version provided. ChatGPT can help you convert this to VHDL pretty well if you are a fan of VHDL). Import all the relevant files into your project - all the .v files, as well as TOP\_<Nexys/Basys depending on your board>.vhd and uart.vhd - irrespective of whether you use UART. Choose the appropriate constraint file for your board^{$}. The files are pretty self-explanatory. It is possible to mix VHDL and Verilog files in the same project. Note that TOP/uart.vhd is the same as that for the ARM version. All other files have differences, though in many cases, the differences are minor.
 
 The file hierarchy is as follows
 
@@ -30,6 +30,7 @@ The file hierarchy is as follows
 *   ALU.v → Shifter.v
 
 Ensure that the top-level module is set correctly in your project. It should be TOP (TOP\_<board>.vhd) for implementation, and test\_Wrapper for simulation. It can be set by right-clicking the appropriate file under Design sources (for implementation) and Simulation sources (for simulation) and choosing Set as Top.
+The Wrapper is a convenient testbed to plug your processor (RV) into and simulate it using test\_Wrapper as the testbench - see below for more details on how to modify the test\_Wrapper appropriately. The Wrapper provides instruction/data memory and a set of abstract peripherals with easy-to-view signals. The abstract peripherals of the Wrapper are converted to real protocol/interfacing signals (e.g., CONSOLE_IN/CONSOLE_OUT of the Wrapper to RX/TX of UART; anode and cathode activation signals of the 7-segment display) by Top_.vhd. Writing a testbench to simulate RV directly is unnecessary. 
 
 There are basically 4 files you need to populate / modify  - **PC_Logic.v** , **Decoder.v** , **RV.v** ; **y**ou will also need to paste your code / constant memories into **Wrapper.v** (see the section on RISCV Programming Instructions below).  A 5th file, **ALU.v** should also be modified to incorporate shifts.
 
@@ -37,13 +38,13 @@ Some other important considerations :
 
 *   Ensure the top-level module for synthesis is TOP (TOP.vhd) for synthesis (by right-clicking the file under Design Sources).
 *   Ensure that the top-level module is test\_Wrapper (test\_Wrapper.v) for simulation (by right-clicking the file under Simulation Sources) - this is especially important as Vivado might pick up TOP as top-level module for simulation, which is wrong.
-*   You might also need to modify CLK\_DIV\_BITS in TOP.vhd depending on the processor clock speed you want to achieve (keep it to a low number like 5 if you are using UART). This need not be changed for simulation as TOP.vhd is not simulated.  
+*   You might also need to modify CLK\_DIV\_BITS in TOP.vhd depending on the processor clock speed you want to achieve (keep it to a low number like 5 if you are using UART). This need not be changed for simulation as TOP_.vhd is not simulated.  
     
 *   Read the comments (especially about the input and output ports / interfaces) in the Wrapper.v carefully.
 
-$It is a good idea to delay importing the constraints file and the TOP\_<board>.vhd file until you are ready to test on hardware. Not having the constraints file during the design / simulation phase can help avoid some warnings related to synthesis when you try synthesizing a module that does not have the interfaces specified in the constraints file.
+^{$}It is a good idea to delay importing the constraints file and the TOP\_<board>.vhd file until you are ready to test on hardware. Not having the constraints file during the design / simulation phase can help avoid some warnings related to synthesis when you try synthesizing a module that does not have the interfaces specified in the constraints file.
 
-Wrapper.v is almost identical to that of the ARM version. The only real difference is in the memory map. A signal MemRead has also been added for better functionality of UART. The TOP\_<board>.vhd is identical to that of the ARM version.
+Wrapper.v for ARM and RISC-V are almost identical. The only real difference is in the memory map.
 
 ## Design Requirements
 
