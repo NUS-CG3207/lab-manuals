@@ -20,7 +20,7 @@ No extra marks will be awarded for performance enhancements / adding support for
 
 ## Design Files
 
-The design files can be found here - [Lab\_2\_Template\_files](https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2) (Only Verilog version provided. ChatGPT can help you convert this to VHDL pretty well if you are a fan of VHDL). Import all the relevant files into your project - all the .v files, as well as TOP\_<Nexys/Basys depending on your board>.vhd and uart.vhd - irrespective of whether you use UART. Choose the appropriate constraint file for your board^{$}. The files are pretty self-explanatory. It is possible to mix VHDL and Verilog files in the same project. Note that TOP/uart.vhd is the same as that for the ARM version. All other files have differences, though in many cases, the differences are minor.
+The design files can be found here - [Lab\_2\_Template\_files](https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2) (Only Verilog version provided. ChatGPT can help you convert this to VHDL pretty well if you are a fan of VHDL). Import all the relevant files into your project - all the .v files, as well as TOP\_<Nexys/Basys depending on your board>.vhd and uart.vhd - irrespective of whether you use UART. Choose the appropriate constraint file for your board$^{$}$. The files are pretty self-explanatory. It is possible to mix VHDL and Verilog files in the same project. Note that TOP/uart.vhd is the same as that for the ARM version. All other files have differences, though in many cases, the differences are minor.
 
 The file hierarchy is as follows
 
@@ -42,7 +42,7 @@ Some other important considerations :
     
 *   Read the comments (especially about the input and output ports / interfaces) in the Wrapper.v carefully.
 
-^{$}It is a good idea to delay importing the constraints file and the TOP\_<board>.vhd file until you are ready to test on hardware. Not having the constraints file during the design / simulation phase can help avoid some warnings related to synthesis when you try synthesizing a module that does not have the interfaces specified in the constraints file.
+$^{$}$It is a good idea to delay importing the constraints file and the TOP\_<board>.vhd file until you are ready to test on hardware. Not having the constraints file during the design / simulation phase can help avoid some warnings related to synthesis when you try synthesizing a module that does not have the interfaces specified in the constraints file.
 
 Wrapper.v for ARM and RISC-V are almost identical. The only real difference is in the memory map.
 
