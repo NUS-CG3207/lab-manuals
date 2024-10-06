@@ -42,7 +42,7 @@ Some other important considerations :
     
 *   Read the comments (especially about the input and output ports / interfaces) in the Wrapper.v carefully.
 
-ᶲIt is a good idea to delay importing the constraints file and the TOP\_<board>.vhd file until you are ready to test on hardware. Not having the constraints file during the design / simulation phase can help avoid some warnings related to synthesis when you try synthesizing a module that does not have the interfaces specified in the constraints file.
+ᶲIt is a good idea to delay importing the constraints file and the TOP\_<board>.vhd file until you are ready to test on hardware. Not having the constraints file during the design / simulation phase can help avoid some warnings related to synthesis when you try synthesizing a module that does not have the interfaces specified in the constraints file. Alternatively, import it, but keep it disabled until you need it in Project Manager > Sources > Constraints > right-click and Disable File.
 
 Wrapper.v for ARM and RISC-V are almost identical. The only real difference is in the memory map.
 
