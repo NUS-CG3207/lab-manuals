@@ -161,3 +161,4 @@ Program the FPGA using the simple_count.bit given in this zip file (VHDL) or thi
 * Xilinx Vivado's text editor is not very good. You might want to use a better editor like Notepad++ to keep the code properly intended.
 
 * It might take a bit of time, effort, and frustration before you are able to write good synthesizable code. Sometimes, you can’t get a better teacher than experience, especially so when it comes to writing good Verilog code. Just hang in there and you will be ok soon. The best bet is to go through the notes and have the hardware in mind while writing the code.
+* It is generally a good idea to use project folder paths that do not have spaces, special characters, etc.
