@@ -1,6 +1,6 @@
 # Lab 4: Implementing Pipelining
 
-This page will guide you through how to implement basic pipelining for the mandatory task for Lab 4. Hazard detection and resolution is covered in [this page](lab4/hazards.md).
+This page will guide you through how to implement basic pipelining for the mandatory task for Lab 4. Hazard detection and resolution is covered in [this page](hazards.md).
 
 ## Notes
 

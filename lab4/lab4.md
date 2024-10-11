@@ -8,7 +8,7 @@ Implement pipelining without hazard hardware. The pipelining should be done such
 
 Note: When we say "without hazard hardware", we mean that hazard hardware is not a basic requirement. You can score the full 15 marks for the basic component of this assessment without implementing hazard hardware - just be careful to include the appropriate number of `NOP` instructions so your code still works. This is not to say, though, that hazard hardware cannot or should not be implemented - but if you do include it, it will be counted as an enhancement (see the next section). 
 
-For some tips on implementing pipelining, [see this page](lab4/pipeline.md).
+For some tips on implementing pipelining, [see this page](pipeline.md).
 
 ## Open-ended Enhancement \[10 marks\]
 
@@ -16,9 +16,9 @@ This is the fun part - you get 10 marks for Lab 4 for implementing performance e
 
 Some potential improvements you can think about implementing are:
 
-* [Implement hazard detection and resolution](lab4/hazard.md)
-* [Implement additional instructions](lab4/additional_instructions.md)
-* [Implement exception handling and interrupt support](lab4/interrupts.md)
+* [Implement hazard detection and resolution](hazard.md)
+* [Implement additional instructions](additional_instructions.md)
+* [Implement exception handling and interrupt support](interrupts.md)
 
 
 ## Design Instructions
