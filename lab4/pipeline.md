@@ -21,7 +21,7 @@ Follow these steps to implement pipelining.
 			ExtImm_E <= ExtImm_D;
 		end
 		```
-	in ARM.v or RV.v
+		in ARM.v or RV.v
 	* **VHDL**: Use a concurrent statement (**NOT** inslude a clocked process for now). For example, `ExtImm_E <= ExtImm_D;` in ARM.vhd
 
 3. Verify that your design works **EXACTLY as it did previously**, without any changes to the assembly language program. We have NOT yet inferred any registers, so there should not be any pipelining going on (yet!). If something has broken, now is a good time to debug it. 
