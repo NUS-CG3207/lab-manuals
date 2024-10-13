@@ -8,7 +8,9 @@ Add support for the following previously unsupported instructions / features. Th
 
 * DP instructions: `xor`, `xori`, `slt`, `sltu`, `slti`, `sltiu`, `slli`, `srli`, `srai`. 
 
-* Branch instructions: `blt`, `bge`, `bltu`, `bgeu`, `jal` (with support for linking: i.e. `rd = PC + 4`), `jalr`.Multiply (M) instructions: `mulh`, `mulhu`, `mulhsu`, `div`, `rem`, `remu`.
+* Branch instructions: `blt`, `bge`, `bltu`, `bgeu`, `jal` (with support for linking: i.e. `rd = PC + 4`), `jalr`.
+  
+* Multiply (M) instructions: `mulh`, `mulhu`, `mulhsu`, `div`, `rem`, `remu`.
   
 * Byte and half-word load and store: `lb`, `lh`, `lbu`, `lhu`, `sb`, `sbu`.
 
