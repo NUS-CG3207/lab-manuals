@@ -20,11 +20,15 @@ Note: Support for byte and half-word load / store is not a basic requirement. Th
 
 ## Compulsory Task 2 \[10 marks\]
 
-Implement basic pipelining. Hazard hardware is optional and will count as an open-ended enhancement if done, but it is not counted for the compulsory task marks. The pipelining should be done such that the processor supports all the requirements for Lab 2, Lab 3, and the additional instructions / features mentioned in Lab 4 Compulsory Task 1 mentioned above.
+Implement basic pipelining. Hazard hardware is optional and will count as an open-ended enhancement if done, but it is not counted for the compulsory task marks. Pipelining should be done such that the processor supports all the requirements for Lab 2, Lab 3, and the additional instructions / features mentioned in Lab 4 Compulsory Task 1 above.
 
 As long as your code works after inserting the sufficient `NOP`s, this task requirement can be satisfied. If you have full hazard hardware, of course, `NOP`s are unnecessary. 
 
 For some tips on implementing pipelining, [see this page](pipeline.md).
+
+The real benefit of pipelining is higher clock speeds. For example, it's highly unlikely that your design runs at 100 MHz without pipelining. You'll most likely get a critical warning that some timing constraints are not met. The design may or may not run on the board, but if you got a timing warning, the functionality is not reliable. It's pointless to have a pipelined design that runs at 1 Hz. So it is a good idea to think of an application program that benefits from the higher clock speeds. 
+Frequencies of up to 100 MHz can be achieved by changing CLK_DIV_BITS in TOP.vhd. 
+Up to ~430 MHz is possible though unlikely with a 5-stage pipeline. To increase clock beyond 100 MHz, you will need to make use of the FPGA built-in clocking resource called MMCM. This can be configured using a clocking wizard.
 
 ## Open-ended Enhancement \[10 marks\]
 
@@ -35,13 +39,14 @@ Some potential improvements you can think about implementing are:
 * [Implement hazard detection and resolution](hazard.md)
 * [Implement additional instructions](additional_instructions.md)
 * [Implement exception handling and interrupt support](interrupts.md)
+* Implement basic branch prediction
 
 
 ## Design Instructions
 
 *   You are encouraged to have your own, comprehensive programs to have a convincing demo.
-*   You may have to tweak the templates given in Lab 2 for use in Lab 4. Specifically, you will have to change the ALUControl to 4 bits for ARM.
-*   All 32-bit combinational arithmetic and logical operations have to be performed inside the ALU. *Exceptions*: `+` for calculating `PC+4`, `PC+8`, multiplication, division, enhancements such as branch prediction. Pipeline hazard detection will require comparisons (for equality only) too, but they are on 5-bit values.
+*   You may have to tweak the templates given in Lab 2 for use in Lab 4. Specifically, you will have to change the ALUControl to 4 bits for ARM, PCSrc and ALUSrcA/B width for RISC-V, etc.
+*   All 32-bit combinational arithmetic and logical operations have to be performed inside the ALU. *Exceptions*: `+` for calculating `PC+4`, `PC+8` (in ARM), multiplication, division, enhancements such as branch prediction. Pipeline hazard detection will require comparisons (for equality only) too, but they are on 5-bit values.
 *   In the ALU, DO NOT use additional `+` signs -> this could infer additional adders. The existing addition framework should be good enough.
 *   All operators are permitted on 32-bit values outside the ARM/RISC-V module. For example, you will have to do 32-bit comparisons in the wrapper for address decoding.
 *   Use of arithmetic operators  
