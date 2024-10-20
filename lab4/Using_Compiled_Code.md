@@ -21,6 +21,7 @@ It is strongly recommended to use the new template files at https://github.com/N
     * When using memory-mapped input peripherals, the corresponding address location should be modified just before the corresponding lw is executed to simulate the data coming in from peripherals.
     * If you are using the counter peripheral for delay, you might want to use a smaller delay for simulation and change the code to a bigger value later. This can be changed in C code or directly in assembly (likely lui)
     * Though you can't see OLED output, it is fairly easy to check the row, column, pixel colour, and pixel write signals and get a sense.
+* Export the instruction and data memory as hexadecimal text, overwriting the AA_IROM.mem and AA_DRAM.mem that are added to the Vivado project.
 * Simulate in HDL behavioral sim, after changing the test_Wrapper to give stimuli according to the inputs expected by your program.
 * Finally, synthesise and generate bitstream. Fingers crossed :)
 
@@ -30,6 +31,8 @@ The new peripherals cycle counter, accelerometer, and OLED display peripheral re
 
 ### OLED
 OLED uses PMOD B.
+
+OLED_CTRL register functionality is described below.
 
 OLED_CTRL[3:0]
 
