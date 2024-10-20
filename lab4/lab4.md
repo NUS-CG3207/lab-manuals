@@ -40,6 +40,7 @@ Some potential improvements you can think about implementing are:
 * [Implement additional instructions](additional_instructions.md)
 * [Implement exception handling and interrupt support](interrupts.md)
 * Implement basic branch prediction
+* Use other devices. e.g., built in mic (could be interesting), RGB LEDs (not too interesting), USB host, etc. Not too difficult using components/modules from https://github.com/Digilent/Nexys-4-DDR-OOB
 
 
 ## Design Instructions
