@@ -59,7 +59,8 @@ Some potential improvements you can think about implementing are:
 *   Lab 4 will be evaluated in **Week 12**. The presentation schedule can be found on Canvas. 
 *   Include
     
-    *   **.v/vhd** files you have created/modified \[ RTL Sources, Testbench(es) \] 
+    *   **.v/vhd** files you have created/modified \[ RTL Sources, Testbench(es) \]
+    *   **.c/h** files used to generate assembly
     *   **.bit** files 
     *   **.s/.asm** files (assembly programs)
     *   **.ppt** file - 2 to 6 slides showing performance enhancement techniques you have implemented.
