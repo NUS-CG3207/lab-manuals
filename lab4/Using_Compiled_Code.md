@@ -32,12 +32,15 @@ The new peripherals cycle counter, accelerometer, and OLED display peripheral re
 OLED uses PMOD B.
 
 OLED_CTRL[3:0]
+
 Change that triggers a write. We can vary one of them (e.g., column) while keeping the other two the same. This can be efficient like in the example program, where a line with a specified colour is drawn with the same colour and y, varying only x. 
 * 0x0: vary_pixel_data_mode
 * 0x1: vary_COL_mode (x)
 * 0x2: vary_ROW_mode (y)
 
 OLED_CTRL[7:4]
+
+Colour format.
 * 0x0: 7-bit colour mode: 1 byte per pixel, memory efficient especially if loading bitmapped images 0-2R-3G-2B format
 * 0x1: 16-bit colour mode: Highest colour depth supported by the OLED in a compact representation. OLED native input format. 5R-6G-5B format.
 * 0x2: 24-bit colour mode: Similar to standard displays, but some LSBs are not used. Easy to see in simulation. Wrapper output format. 5R-3(0)-6G-2(0)-5B-3(0) format.
