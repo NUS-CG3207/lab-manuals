@@ -5,7 +5,7 @@
 
 It is strongly recommended to use the new template files at https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2/V3 if you're using compiled code. If you do not upgrade, you will have to manually segregate static constants and variables to ROM and RAM, and static variables can only be zero initialized.  
 
-If you're upgrading from version 1 of template files, you will need to change Wrapper, TOP, and RV.  
+If you're upgrading from version 1 of template files, you will need to change Wrapper, TOP, and RV. Since you modified RV to implement the processor, you will need to merge changes, which is quite easy. 
 If you're upgrading from version 2, only Wrapper and TOP will need to be changed.  
 Use ProgramCounterv2 if  your memory configuration is such that .txt starts at a location other than 0.  
 Use RegFilev2 if you wish to use synchronous read, which may be used to infer block RAMs.  
