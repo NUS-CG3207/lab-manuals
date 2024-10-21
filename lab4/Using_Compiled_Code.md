@@ -32,7 +32,23 @@ Use RegFilev2 if you wish to use synchronous read, which may be used to infer bl
 
 ## Using New Peripherals
 
-The new peripherals cycle counter, accelerometer, and OLED display peripheral register info can be found in the Wrapper HDL code. 
+The new peripherals cycle counter, accelerometer, and OLED display peripheral register info can be found in the Wrapper HDL code.  
+
+### Cycle Counter
+Cycle counter gives the number of processor cycles that have elapsed since the last reset.  
+Cycle counter rolls over at 42 seconds at 100 MHz (CLK_DIV_BITS = 0), but is much longer at lower frequencies.  
+Change counter width and bits used in Wrapper.v for a longer duration, but lower cycles precision.  
+
+### Accelerometer
+The accelerometer gives the temperature and X, Y, Z accelerations.  
+ACCEL_DATA is a 32-bit value packing 4 independent 8-bit values <temperature, X, Y, Z> MSB downto LSB.  
+Each value is in 8-bit signed format with a range of +/- 2g. So a reading of 1g is 0x40 and -1g is 0xC0.  
+The sensor in fact gives a 12-bit reading, but using only 8 bits for simplicity.  
+The calibration is not perfect on all boards, so do not be suprised if there is a fixed offset to all your readings  
+
+If you want only a specific axis or temperature, use a combination of logical operators and shift e.g., extract Y using (*ACC_DATA_ADDR & 0x0000FF00) >> 8. If your processor can do `lbu`, the required byte can be read directly.  
+
+ACCEL_DREADY indicates data readiness, which is useful only when attempting to read at a high rate.
 
 ### OLED
 OLED uses PMOD **B**.
@@ -45,12 +61,14 @@ OLED_CTRL[3:0] : Change that triggers a write. We can vary one of them (e.g., co
 * 0x2: vary_ROW_mode (y)
 
 OLED_CTRL[7:4] : Colour format.
-* 0x0: 7-bit colour mode: 1 byte per pixel, memory efficient especially if loading bitmapped images. Format: 0-2R-3G-2B.  
+* 0x0: 8-bit colour mode: 1 byte per pixel, memory efficient especially if loading bitmapped images. Format: 3R-3G-2B.  
 * 0x1: 16-bit colour mode: Highest colour depth supported by the OLED in a compact representation. It is the OLED native input format: 5R-6G-5B.  
 * 0x2: 24-bit colour mode: Similar to standard displays, but some LSBs are not used. Easy to see in simulation. Wrapper output format: 5R-3(0)-6G-2(0)-5B-3(0).  
 
-The below code gives you an idea of how to initialize an image at any part of your data memory.  
-Make sure your data memory is big enough to hold the image!  
+Before you think of loading an image - Make sure your data memory is big enough to hold the image. Adjust the depth/size in both HDL and C!  
+The easiest way to load an image is to hard-code the array in C or assembly. This can be done easily using an online tool such as https://www.digole.com/tools/PicturetoC_Hex_converter.php  
+It is also possible to receive the image at runtime via UART!  
+The below code gives you an idea of how to initialize an image at any part of your data memory in HDL, if that is desired.
 This can then be read in your C program using a pointer that can be hard-coded to point to DMEM_BASE+IMG1_START.
 ``` 
 //----------------------------------------------------------------
@@ -69,21 +87,3 @@ for(i=0; i<96*64/4-1;i=i+1) begin
 	DMEM[IMG1_START+i] = IMG1[i];  // actual address: DMEM_BASE+IMG1_START
 end
 ``` 
-It is also possible to receive the image at runtime via UART!  
-
-
-### Cycle Counter
-Cycle counter gives the number of processor cycles that have elapsed since the last reset.  
-Cycle counter rolls over at 42 seconds at 100 MHz (CLK_DIV_BITS = 0), but is much longer at lower frequencies.  
-Change counter width and bits used in Wrapper.v for a longer duration, but lower cycles precision.  
-
-### Accelerometer
-The accelerometer gives the temperature and X, Y, Z accelerations.  
-ACCEL_DATA is a 32-bit value packing 4 independent 8-bit values <temperature, X, Y, Z> MSB downto LSB.  
-Each value is in 8-bit signed format with a range of +/- 2g. So a reading of 1g is 0x40 and -1g is 0xC0.  
-The sensor in fact gives a 12-bit reading, but using only 8 bits for simplicity.  
-The calibration is not perfect on all boards, so do not be suprised if there is a fixed offset to all your readings  
-
-If you want only a specific axis or temperature, use a combination of logical operators and shift e.g., extract Y using (*ACC_DATA_ADDR & 0x0000FF00) >> 8. If your processor can do `lbu`, the required byte can be read directly.  
-
-ACCEL_DREADY indicates data readiness, which is useful only when attempting to read at a high rate.
