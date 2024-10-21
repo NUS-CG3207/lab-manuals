@@ -3,12 +3,12 @@
 
 ## Using Compiled Code
 
-It is strongly recommended to use the new template files at https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2/V3 if you're using compiled code. If you do not upgrade, you will have to manually segregate static constants and variables to ROM and RAM, and static variables can only be zero initialized.__
+It is strongly recommended to use the new template files at https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2/V3 if you're using compiled code. If you do not upgrade, you will have to manually segregate static constants and variables to ROM and RAM, and static variables can only be zero initialized.  
 
-If you're upgrading from version 1 of template files, you will need to change Wrapper, TOP, and RV.__ 
-If you're upgrading from version 2, only Wrapper and TOP will need to be changed.__
-Use ProgramCounterv2 if  your memory configuration is such that .txt starts at a location other than 0.__
-Use RegFilev2 if you wish to use synchronous read, which may be used to infer block RAMs.__
+If you're upgrading from version 1 of template files, you will need to change Wrapper, TOP, and RV.  
+If you're upgrading from version 2, only Wrapper and TOP will need to be changed.  
+Use ProgramCounterv2 if  your memory configuration is such that .txt starts at a location other than 0.  
+Use RegFilev2 if you wish to use synchronous read, which may be used to infer block RAMs.  
 
 * To the extent possible, it is a good idea to test your algorithms (e.g., masking and shifts to deal with bytes within a word.) in a standard C compiler, making appropriate changes (e.g., printf and scanf/hardcoding to simulate actual system input and output) to run in a desktop environment.
 * Follow the Godbolt settings as shown![Settings](godbolt.png). 
@@ -37,7 +37,7 @@ The new peripherals cycle counter, accelerometer, and OLED display peripheral re
 ### OLED
 OLED uses PMOD **B**.
 
-OLED_CTRL register functionality is described below.__
+OLED_CTRL register functionality is described below.  
 
 OLED_CTRL[3:0] : Change that triggers a write. We can vary one of them (e.g., column) while keeping the other two the same. This can be efficient in some circumstances. In the example program where a line with a specified colour is drawn, we vary only x. 
 * 0x0: vary_pixel_data_mode
@@ -45,23 +45,23 @@ OLED_CTRL[3:0] : Change that triggers a write. We can vary one of them (e.g., co
 * 0x2: vary_ROW_mode (y)
 
 OLED_CTRL[7:4] : Colour format.
-* 0x0: 7-bit colour mode: 1 byte per pixel, memory efficient especially if loading bitmapped images. Format: 0-2R-3G-2B.__
-* 0x1: 16-bit colour mode: Highest colour depth supported by the OLED in a compact representation. It is the OLED native input format: 5R-6G-5B.__
-* 0x2: 24-bit colour mode: Similar to standard displays, but some LSBs are not used. Easy to see in simulation. Wrapper output format: 5R-3(0)-6G-2(0)-5B-3(0).__
+* 0x0: 7-bit colour mode: 1 byte per pixel, memory efficient especially if loading bitmapped images. Format: 0-2R-3G-2B.  
+* 0x1: 16-bit colour mode: Highest colour depth supported by the OLED in a compact representation. It is the OLED native input format: 5R-6G-5B.  
+* 0x2: 24-bit colour mode: Similar to standard displays, but some LSBs are not used. Easy to see in simulation. Wrapper output format: 5R-3(0)-6G-2(0)-5B-3(0).  
 
 
 ### Cycle Counter
-Cycle counter gives the number of processor cycles that have elapsed since the last reset.__
-Cycle counter rolls over at 42 seconds at 100 MHz (CLK_DIV_BITS = 0), but is much longer at lower frequencies.__
-Change counter width and bits used in Wrapper.v for a longer duration, but lower cycles precision.__
+Cycle counter gives the number of processor cycles that have elapsed since the last reset.  
+Cycle counter rolls over at 42 seconds at 100 MHz (CLK_DIV_BITS = 0), but is much longer at lower frequencies.  
+Change counter width and bits used in Wrapper.v for a longer duration, but lower cycles precision.  
 
 ### Accelerometer
-The accelerometer gives the temperature and X, Y, Z accelerations.__
-ACCEL_DATA is a 32-bit value packing 4 independent 8-bit values <temperature, X, Y, Z> MSB downto LSB.__
-Each value is in 8-bit signed format with a range of +/- 2g. So a reading of 1g is 0x40 and -1g is 0xC0.__
-The sensor in fact gives a 12-bit reading, but using only 8 bits for simplicity.__
-The calibration is not perfect on all boards, so do not be suprised if there is a fixed offset to all your readings__
+The accelerometer gives the temperature and X, Y, Z accelerations.  
+ACCEL_DATA is a 32-bit value packing 4 independent 8-bit values <temperature, X, Y, Z> MSB downto LSB.  
+Each value is in 8-bit signed format with a range of +/- 2g. So a reading of 1g is 0x40 and -1g is 0xC0.  
+The sensor in fact gives a 12-bit reading, but using only 8 bits for simplicity.  
+The calibration is not perfect on all boards, so do not be suprised if there is a fixed offset to all your readings  
 
-If you want only a specific axis or temperature, use a combination of logical operators and shift e.g., extract Y using (*ACC_DATA_ADDR & 0x0000FF00) >> 8. If your processor can do `lbu`, the required byte can be read directly.__
+If you want only a specific axis or temperature, use a combination of logical operators and shift e.g., extract Y using (*ACC_DATA_ADDR & 0x0000FF00) >> 8. If your processor can do `lbu`, the required byte can be read directly.  
 
 ACCEL_DREADY indicates data readiness, which is useful only when attempting to read at a high rate.
