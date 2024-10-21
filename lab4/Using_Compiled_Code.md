@@ -49,6 +49,28 @@ OLED_CTRL[7:4] : Colour format.
 * 0x1: 16-bit colour mode: Highest colour depth supported by the OLED in a compact representation. It is the OLED native input format: 5R-6G-5B.  
 * 0x2: 24-bit colour mode: Similar to standard displays, but some LSBs are not used. Easy to see in simulation. Wrapper output format: 5R-3(0)-6G-2(0)-5B-3(0).  
 
+The below code gives you an idea of how to initialize an image at any part of your data memory.  
+Make sure your data memory is big enough to hold the image!  
+This can then be read in your C program using a pointer that can be hard-coded to point to DMEM_BASE+IMG1_START.
+``` 
+//----------------------------------------------------------------
+// Memory initialisation
+//----------------------------------------------------------------
+localparam IMG1_START = 32'h100; // assuming the image starts at an offset of 0x100 *words* from the data memory start
+reg [31:0] IMG1 [0:96*64/4];	// one 96*64 (OLED res) image : each word is a collection of 4 bytes, assuming 7/8 bit format.
+integer i;
+
+initial begin
+
+$readmemh("AA_IROM.mem", IROM);
+$readmemh("AA_DMEM.mem", DMEM);
+$readmemh("AA_IMG1.mem", IMG1);
+for(i=0; i<96*64/4-1;i=i+1) begin
+	DMEM[IMG1_START+i] = IMG1[i];  // actual address: DMEM_BASE+IMG1_START
+end
+``` 
+It is also possible to receive the image at runtime via UART!  
+
 
 ### Cycle Counter
 Cycle counter gives the number of processor cycles that have elapsed since the last reset.  
