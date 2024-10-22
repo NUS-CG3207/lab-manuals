@@ -63,7 +63,7 @@ Caution: Do not leave OLED on for too long unnecessarily, especially with the sa
 
 OLED_CTRL register functionality is described below.  
 
-OLED_CTRL[3:0] : Change that triggers write. We can vary one of them (e.g., column) while keeping the other two the same. This can be efficient in some circumstances. In the example program where a line with a specified colour is drawn, we vary only x (columns).
+OLED_CTRL[3:0] : Change that triggers write. We can vary one of them (e.g., column) while keeping the other two the same. This can be efficient in some circumstances like  [vector](https://en.m.wikipedia.org/wiki/Vector_graphics) graphics. In the example program where a line with a specified colour is drawn, we vary only x (columns).
 
 * 0x0: vary_pixel_data_mode
 * 0x1: vary_COL_mode (x)
@@ -75,14 +75,16 @@ OLED_CTRL[7:4] : Colour format.
 * 0x1: 16-bit colour mode: Highest colour depth supported by the OLED in a compact representation. It is the OLED native input format: 5R-6G-5B.  
 * 0x2: 24-bit colour mode: Similar to standard displays, but some LSBs are not used. Easier to visualise in simulation as each colour is a 2 hex digits. Wrapper output format: 5R-3(0)-6G-2(0)-5B-3(0).  
 
+Possible enhancement: Implementing a mode where the row/column indices autoincrement in a row major/column major manner can accelerate the loading of [raster](https://en.wikipedia.org/wiki/Raster_graphics) images, with only one write per pixel, and with the ability to feed data from a C array without maintaining separate row/column indices. You will need some control bits in the control register to enable this (and an additional bit if you wish to allow the user to choose between row major / column major formats). 
+
 #### Loading Images
 
-The easiest way to load a [raster](https://en.wikipedia.org/wiki/Raster_graphics) image to hard-code the array in C or assembly. This can be done easily using an online tool such as <https://www.digole.com/tools/PicturetoC_Hex_converter.php> or https://notisrac.github.io/FileToCArray/.  
+The easiest way to load a raster image to hard-code the array in C or assembly. This can be done easily using an online tool such as <https://www.digole.com/tools/PicturetoC_Hex_converter.php> or https://notisrac.github.io/FileToCArray/.  
  
 It is also possible to receive the image at runtime via UART, or initialise the image in your HDL via a .mem file. However, these will limit your ability to simulate in RARS.
 
 Before you think of loading a raster image - Make sure your data memory is big enough to hold the image. Adjust the depth/size in both HDL and C!   
-A not-too-complex [vector](https://en.m.wikipedia.org/wiki/Vector_graphics) image may not need memory size increase or memory configuration change.
+A not-too-complex vector image may not need memory size increase or memory configuration change.
 
 For a full-resolution raster image (96x64), the data memory size needed will exceed the 0x2000 size provided by the 'compact,text at 0' configuration that we have been using. You will have to resort to the RARS default configuration in this case.  
 This requires changing
