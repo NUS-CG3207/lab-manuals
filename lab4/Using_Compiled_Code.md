@@ -58,12 +58,15 @@ ACCEL_DREADY indicates data readiness, which is useful only when attempting to r
 
 OLED uses PMOD **B**.
 
+The OLED controller has a built-in buffer, which means your program does not have to keep feeding pixels continuously. Only changes need to be written.
+
+
 Caution: Do not leave OLED on for too long unnecessarily, especially with the same frame. It can cause burn in.
 
 
 OLED_CTRL register functionality is described below.  
 
-OLED_CTRL[3:0] : Change that triggers write. We can vary one of them (e.g., column) while keeping the other two the same. This can be efficient in some circumstances like  [vector](https://en.m.wikipedia.org/wiki/Vector_graphics) graphics. In the example program where a line with a specified colour is drawn, we vary only x (columns).
+OLED_CTRL[3:0] : Change that triggers write. We can vary one of them (e.g., column) while keeping the other two the same. This can be efficient in applications like  [vector](https://en.m.wikipedia.org/wiki/Vector_graphics) graphics. In the example program where a line with a specified colour is drawn, we vary only x (columns).
 
 * 0x0: vary_pixel_data_mode
 * 0x1: vary_COL_mode (x)
@@ -75,7 +78,7 @@ OLED_CTRL[7:4] : Colour format.
 * 0x1: 16-bit colour mode: Highest colour depth supported by the OLED in a compact representation. It is the OLED native input format: 5R-6G-5B.  
 * 0x2: 24-bit colour mode: Similar to standard displays, but some LSBs are not used. Easier to visualise in simulation as each colour is a 2 hex digits. Wrapper output format: 5R-3(0)-6G-2(0)-5B-3(0).  
 
-Possible enhancement: Implementing a mode where the row/column indices autoincrement in a row major/column major manner can accelerate the loading of [raster](https://en.wikipedia.org/wiki/Raster_graphics) images, with only one write per pixel, and with the ability to feed data from a C array without maintaining separate row/column indices. You will need some control bits in the control register to enable this (and an additional bit if you wish to allow the user to choose between row major / column major formats). 
+Possible enhancement: Implementing a mode where the row/column indices autoincrement in a row major/column major manner can accelerate the loading of [raster](https://en.wikipedia.org/wiki/Raster_graphics) images. Only one write per pixel will suffice, with the ability to feed data from a C array without maintaining separate row/column indices. You will need to implement some control bits in the control register to enable this (and an additional bit if you wish to allow the user to choose between row major / column major formats), along with other changes in the Wrapper. 
 
 #### Loading Images
 
