@@ -64,7 +64,7 @@ Caution: Do not leave OLED on for too long unnecessarily, especially with the sa
 
 OLED_CTRL register functionality is described below.  
 
-OLED_CTRL[3:0] : Change that triggers write. We can vary one of them (e.g., column) while keeping the other two the same. This can be efficient in applications like  [vector](https://en.m.wikipedia.org/wiki/Vector_graphics) graphics. In the example program where a line with a specified colour is drawn, we vary only x (columns).
+OLED_CTRL[3:0] : Change that triggers write. We can vary one of them (e.g., column) while keeping the other two the same. This can be efficient in applications like  [vector](https://en.m.wikipedia.org/wiki/Vector_graphics) graphics, where replicating a pixel along a row or column is common. In the example program where a line with a specified colour is drawn, we vary only x (columns).
 
 * 0x0: vary_pixel_data_mode
 * 0x1: vary_COL_mode (x)
