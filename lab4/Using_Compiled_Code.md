@@ -13,7 +13,7 @@ Use RegFilev2 if you wish to use synchronous read, which may be used to infer bl
 * To the extent possible, it is a good idea to test your algorithms (e.g., masking and shifts to deal with bytes within a word.) in a standard C compiler, making appropriate changes (e.g., printf and scanf/hardcoding to simulate actual system input and output) to run in a desktop environment.
 * Follow the Godbolt settings as shown![Settings](godbolt.png).
   * The default Godbolt language maybe C++, change it to C. C++ compiler does stuff like name mangling which we can do without.
-  * Clang produces more comprehensible code than GCC, though sometime at the expense of increased code size.
+  * Clang produces more comprehensible code than GCC, though sometimes at the expense of increased code size.
   * In fact, GCC with -Os -fwhole-program can produce very compact code, but can be pretty hard to make sense of. In any case, do not use the trunk version of GCC.
 * Do not use library functions such as printf. If need be, implement your own, simple versions of these functions.
 * Make sure that only those instructions supported by your processor are generated. Check in the RARS execute window for actual instructions.
