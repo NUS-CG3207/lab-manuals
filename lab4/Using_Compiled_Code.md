@@ -96,7 +96,7 @@ When you export byte arrays in the data segment from Godbolt to RARS, there coul
 ![C Code](CCode-1.png)  
 C Code  
 
-![Octal array emitted by the compiler](OctalData-1.png) 
+![Octal array emitted by the compiler](OctalData-1.png)  
 Octal array emitted by the compiler  
 
 ![Copy-pasted array fix](FixInRARS-1.png)  
