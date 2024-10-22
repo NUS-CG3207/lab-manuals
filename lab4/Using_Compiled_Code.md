@@ -29,7 +29,7 @@ Use RegFilev2 if you wish to use synchronous read, which may be used to infer bl
   * If you are using the counter peripheral for delay, you might want to use a smaller delay for simulation and change the code to a bigger value later. This can be changed in C code or directly in assembly (likely lui)
   * Though you can't see OLED output, it is fairly easy to check the row, column, pixel colour, and pixel write signals and get a sense.
 * Export the instruction and data memory as hexadecimal text, overwriting the AA_IROM.mem and AA_DRAM.mem that are added to the Vivado project.
-* Simulate in HDL behavioral sim, after changing the test_Wrapper to give stimuli according to the inputs expected by your program.
+* Simulate in HDL behavioral sim, after changing the test_Wrapper to give stimuli according to the inputs expected by your C/assembly program.
 * Finally, synthesise and generate bitstream. Fingers crossed :)
 
 ## Using New Peripherals
@@ -102,6 +102,7 @@ Copy-pasted array fix in RARS with .byte declaration
 
 Food for thought:
 * Better to use synchronous read and use block RAMs if you have many images. Else, you will quickly run out of LUTs.
-* Image pixels being sent column-wise is actually advantageous, if the conversion tool can give a column-major format for the array. This is since multiplication by 64 is easier than by 96. It is not uncommon to allocate memory that is larger than the required size to make the buffer dimensions powers of two - trading off memory for performance!
+* Image pixels being sent column-wise is actually advantageous, if the conversion tool can give a column-major format for the array. This is since multiplication by 64 is easier than by 96.
   * Clang emits `mul` instructions when you multiply by 96, GCC does y\*64+y\*32 instead.
+  * It is not uncommon to allocate memory that is larger than the required size to make the buffer dimensions powers of two - trading off memory for performance!
 * You cannot read back what you wrote to the OLED. Something = *OLED_DATA_ADDR does not work. These are memory-mapped peripherals, do not treat like memory. However, it is possible to modify the Wrapper and TOP to accomplish this, but has some issues such as needing 2 clock cycles for a read.
