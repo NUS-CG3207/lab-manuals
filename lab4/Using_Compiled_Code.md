@@ -103,5 +103,5 @@ Copy-pasted array fix in RARS with .byte declaration
 Food for thought:
 * Better to use synchronous read and use block RAMs if you have many images. Else, you will quickly run out of LUTs.
 * Image pixels being sent column-wise is actually advantageous, if the conversion tool can give a column-major format for the array. This is since multiplication by 64 is easier than by 96. It is not uncommon to allocate memory that is larger than the required size to make the buffer dimensions powers of two - trading off memory for performance!
-  * Clang emits `mul` instructions when you multiply by 96, GCC does y*64+y*32 instead.
+  * Clang emits `mul` instructions when you multiply by 96, GCC does y\*64+y\*32 instead.
 * You cannot read back what you wrote to the OLED. Something = *OLED_DATA_ADDR does not work. These are memory-mapped peripherals, do not treat like memory. However, it is possible to modify the Wrapper and TOP to accomplish this, but has some issues such as needing 2 clock cycles for a read.
