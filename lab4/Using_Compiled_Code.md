@@ -77,10 +77,12 @@ OLED_CTRL[7:4] : Colour format.
 
 #### Loading Images
 
-The easiest way to load an image is to hard-code the array in C or assembly. This can be done easily using an online tool such as <https://www.digole.com/tools/PicturetoC_Hex_converter.php> or https://notisrac.github.io/FileToCArray/. 
+The easiest way to load a [raster](https://en.wikipedia.org/wiki/Raster_graphics) image to hard-code the array in C or assembly. This can be done easily using an online tool such as <https://www.digole.com/tools/PicturetoC_Hex_converter.php> or https://notisrac.github.io/FileToCArray/.  
+ 
 It is also possible to receive the image at runtime via UART, or initialise the image in your HDL via a .mem file. However, these will limit your ability to simulate in RARS.
 
-Before you think of loading a [raster](https://en.wikipedia.org/wiki/Raster_graphics) image - Make sure your data memory is big enough to hold the image. Adjust the depth/size in both HDL and C!   
+Before you think of loading a raster image - Make sure your data memory is big enough to hold the image. Adjust the depth/size in both HDL and C!   
+A not-too-complex [vector](https://en.m.wikipedia.org/wiki/Vector_graphics) image may not need memory size increase or memory configuration change.
 
 For a full-resolution raster image (96x64), the data memory size needed will exceed the 0x2000 size provided by the 'compact,text at 0' configuration that we have been using. You will have to resort to the RARS default configuration in this case.  
 This requires changing
@@ -88,7 +90,7 @@ This requires changing
 * IROM_BASE and DMEM_BASE to 0x00400000 and 0x10010000 respectively in Wrapperv3 as well as the C code 
 * DMEM_DEPTH_BITS in Wrapperv3. A full-resolution image with even 8-bit colour mode requires 6144 bytes, which means a DMEM_DEPTH_BITS of at least 13! The C code DMEM_SIZE should be 2^DMEM_DEPTH_BITS which is 0x2000 for DMEM_DEPTH_BITS of 13.
 
-When you export byte arrays in data segment from Godbolt to RARS, there could be an issue - RARS doesn't recognize the octal escape sequence emitted by compilers. A workaround is to copy-paste the actual C array into the data segment of RARS with a .byte declaration, instead of using the array emitted by the compiler. The rest of the generated assembly is fine. This is illustrated in the figures below.  
+When you export byte arrays in data segment from Godbolt to RARS, there could be an issue - RARS doesn't recognize the octal escape sequence emitted by compilers. A workaround is to copy-paste the actual C array into the data segment of RARS with a .byte declaration, instead of using the .ascii array emitted by the compiler. The rest of the generated assembly is fine. This is illustrated in the figures below.  
 
 ![C Code](CCode-1.png)  
 C Code  
