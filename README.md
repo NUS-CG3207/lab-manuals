@@ -8,10 +8,10 @@ All labs will be conducted in the Digital Systems and Applications laboratory, a
 
 | Lab | Description                                                         | Marks  | Remarks                   |
 |-----|---------------------------------------------------------------------|--------|---------------------------|
-| 1   | [Familiarisation with HDL/FPGA and Assembly Language](lab1/lab1.md). Omae wa mou shindeiru. | 10     | Individual exercise       |
-| 2   | [Basic CPU design](lab2/lab2.md). All your base are belong to us.                                | 30     | Teams of 2 or 3 students  |
-| 3   | [ALU Design](lab3/lab3.md). Billions of blue blistering barnacles.                                         | 20+5$  | Teams of 2 or 3 students  |
-| 4   | [Advanced CPU design](lab4/lab4.md). It was the best of times, it was the worst of times.                                 | 15+10$ | Teams of 2 or 3 students  |
+| 1   | [Familiarisation with HDL/FPGA and Assembly Language](lab1/lab1.md).  Omae wa mou shindeiru. | 10     | Individual exercise       |
+| 2   | [Basic CPU design](lab2/lab2.md).  All your base are belong to us.                                | 30     | Teams of 2 or 3 students  |
+| 3   | [ALU Design](lab3/lab3.md).  Billions of blue blistering barnacles.                                         | 20+5$  | Teams of 2 or 3 students  |
+| 4   | [Advanced CPU design](lab4/lab4.md).  It was the best of times, it was the worst of times.                                 | 15+10$ | Teams of 2 or 3 students  |
 |     |**Total**                                                            | 90     | = 45% of the module grade |
 
 [The skeleton file repository](https://github.com/nus-cg3207/lab-skeletons) contains all the files you need to download. 
