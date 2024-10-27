@@ -1,6 +1,3 @@
----
-nav_order: 1
----
 # CG3207 Lab Manuals
 
 Welcome to CG3207! In this repository, you will find the manuals for each of the 4 lab exercises you will complete for this course, as well as instructions on how to set up the tools you'll need. 
