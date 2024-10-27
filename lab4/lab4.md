@@ -61,4 +61,5 @@ Some potential improvements you can think about implementing are:
   * **.bit** files
   * **.s/.asm** files (assembly programs)
   * **.ppt** file - 2 to 6 slides showing performance enhancement techniques you have implemented.
+
   in an archive with the filename **GroupXX****\_Monday/Friday\_Lab4.zip** (replace XX with your group number) and upload it to Canvas. One submission per group is sufficient – if there are multiple submissions, the file with the latest timestamp will be taken as the final submission. ***Do not*** zip and upload the complete project folder – only those files mentioned above should be included. **The files should be the exact same files that you used for the demo.**
