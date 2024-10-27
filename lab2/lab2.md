@@ -115,4 +115,5 @@ Simulate your assembly language program thoroughly - else when something goes wr
     *   **.bit** files 
     *   **.asm** files
     *   a **readme.txt**, mentioning the purpose of each file (only those you have created / modified) briefly
-    in an archive with the filename **Lab2\_<lab day><group number>.zip**, e.g. Lab2\_Monday01.zip. One submission per group is sufficient – if there are multiple submissions, the file with the latest timestamp will be taken as the final submission. **_Do not_** zip and upload the complete project folder – only those files mentioned above should be included. **The files should be the exact same files that you used for the demo**.
+
+in an archive with the filename **Lab2\_<lab day><group number>.zip**, e.g. Lab2\_Monday01.zip. One submission per group is sufficient – if there are multiple submissions, the file with the latest timestamp will be taken as the final submission. **_Do not_** zip and upload the complete project folder – only those files mentioned above should be included. **The files should be the exact same files that you used for the demo**.
