@@ -126,15 +126,13 @@ Program the FPGA using the simple_count.bit given in this zip file (VHDL) or thi
 	Note : You will need to debounce DIR and SPEED buttons to observe the desired results (why?). However, debouncing is left as an optional task. The priority of buttons (i.e., what should happen when two or more buttons are pressed together) is left to your discretion.
 
 ## Submission Info
-
-*   Lab 3 will be evaluated in **Week 5**. The presentation schedule can be found on Canvas. 
-*   Please upload the Lab 3 files to Canvas **within 1 hour of your demo in week 5**, including the following files:  
-	*   **.s/.asm** file (assembly language program, if you have modified it)
-	*   **.v/.vhd** files (RTL sources aka your synthesizable HDL, testbenches)
-	*   **.xdc** file
-	*   **.bit** file
-	*   **Screenshot of simulation waveform (.jpg file)**. Note that all signal names should be captured.
-
+* Lab 3 will be evaluated in **Week 5**. The presentation schedule can be found on Canvas. 
+* Please upload the Lab 3 files to Canvas **within 1 hour of your demo in week 5**, including the following files:  
+	* **.s/.asm** file (assembly language program, if you have modified it)
+	* **.v/.vhd** files (RTL sources aka your synthesizable HDL, testbenches)
+	* **.xdc** file
+	* **.bit** file
+	* **Screenshot of simulation waveform (.jpg file)**. Note that all signal names should be captured.
      in the format **Lab1\_<MON/FRI>\_<Matric Number>.zip,** e.g. **Lab1\_MON\_A123456W.zip**. DO NOT zip up the complete project folders or individual files one by one. **The files should be the exact same files that you used for the demo**. Additional marks will not be awarded for any fixes/improvements that you made to the code after the demo.
 
 ## Tips

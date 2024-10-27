@@ -107,13 +107,12 @@ Simulate your assembly language program thoroughly - else when something goes wr
 *   Don't forget to **Relaunch** simulation (not just Restart) once you have made any changes to your HDL.
 
 ## Submission Info
-*   You will have to demonstrate your design during your designated lab session in **Week 7**. The presentation schedule can be found on Canvas. 
-*   One single program demonstrating all the features would be desirable.
-*   Please upload a _single archive_ containing all the relevant files to Canvas within 1 hour of your demo.
-*   Include
+* You will have to demonstrate your design during your designated lab session in **Week 7**. The presentation schedule can be found on Canvas. 
+* One single program demonstrating all the features would be desirable.
+* Please upload a _single archive_ containing all the relevant files to Canvas within 1 hour of your demo.
+* Include
     *   **.vhd/.v** files you have created/modified \[ RTL Sources, Testbench(es) \]
     *   **.bit** files 
     *   **.asm** files
-    *   a **readme.txt**, mentioning the purpose of each file (only those you have created / modified) briefly 
-    
+    *   a **readme.txt**, mentioning the purpose of each file (only those you have created / modified) briefly
     in an archive with the filename **Lab2\_<lab day><group number>.zip**, e.g. Lab2\_Monday01.zip. One submission per group is sufficient – if there are multiple submissions, the file with the latest timestamp will be taken as the final submission. **_Do not_** zip and upload the complete project folder – only those files mentioned above should be included. **The files should be the exact same files that you used for the demo**.
