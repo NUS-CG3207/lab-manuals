@@ -1,6 +1,3 @@
----
-nav_order: 9
----
 # Lab 4 Enhancement: Resolving Hazards
 
 Here are the general steps to add hardware to resolve hazards.

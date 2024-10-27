@@ -1,6 +1,3 @@
----
-nav_order: 7
----
 # Lab 4: Using Compiled Code and New Peripherals
 
 ## Using Compiled Code

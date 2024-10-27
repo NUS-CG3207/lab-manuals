@@ -1,6 +1,3 @@
----
-nav_order: 12
----
 # RISC-V Programming
 
 Use RARS assembler / simulator which can be downloaded [from their GitHub repository](https://github.com/TheThirdOne/rars/releases/tag/continuous). This requires Java to be installed in your system; Java 8 is available [here](https://java.com/en/download/).
