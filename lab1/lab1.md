@@ -9,7 +9,6 @@ id: lab-1-manual
 This lab aims to teach you the tools you will need for this module - namely:
 
 * Assembly language programming and simulation for the RISC-V architecture, and
-
 * HDL simulation and FPGA implementation
 
 This lab may seem quite confusing and tedious at first - this is normal, and nothing to be worried about. It's not directly related to what you're learning in the lectures, and some/all of the tools may be new to you. You might not fully understand the connection between all of the things that you do in this lab, and that's fine. It will all likely make sense once you start doing the subsequent labs, and if it doesn't (or if you just want to understand what you're doing), feel free to ask during the lab sessions, or in the [the discussions](https://github.com/nus-cg3207/lab-skeletons/discussions)) :) 
@@ -57,19 +56,12 @@ Templates for Verilog and VHDL for all the boards can be found in [the skeleton 
 | Nexys 4 / Nexys 4 DDR | XC7A100T-1CSG324C. Note : Nexys 4 / Nexys 4 DDR both use the same FPGA chip, but pin mappings and hence the .xdc file are different. If you use the wrong .xdc file, you get no warnings at all, (as Vivado cares only about the chip you are using, not the board) but the hardware will be non-functional! | ![nexys_4_config](nexys_4_config.png)|
     
 *   In Lab 1, the assembly language code you created in the software part above (1) is not executed on hardware - we do not have a processor to execute the code yet!. Instead, you will just be dumping the binaries created from your assembly language code onto the 7-segment displays. In other words, you are NOT going to achieve the equivalent functionality as the software above for the hardware in this lab - that is for Lab 2. You will not be using the physical DIP switches for this part.
-
 *   INSTR\_MEM and DATA\_CONST\_MEM ROMs have a capacity of 128 words each and store the instructions and constants in our program respectively. Note that both the memories are word addressable (not byte addressable). There are 128 locations, each location having 32 bits of content, addressed using 7 bits.
-
 *   \[Not needed now\] In Lab 2, we have to make sure that the assembly language programs we run on _our_ processor generate only word addresses (addresses are in multiples of 4). In _our_ processor, we will ignore the last two bits and connect the rest to address lines of the ROM.
-
 *   Please see the end of this section to see how to declare and use INSTR\_MEM. DATA\_CONST\_MEM is also dealt with in the same way. ROM is a combinational circuit and doesn't need a clock. Input to each ROM is a 7-bit address, and output is the 32-bit content in the addressed location.
-
 *   Run the [convert_to_verilog](https://github.com/NUS-CG3207/lab-skeletons/blob/main/convert_to_verilog.py) script, and select the .hex file generated when you build the assembly language program. This will cause the initialization of Instruction and Data ROMs to be copied to the clipboard. This can be pasted into the .v/.vhd file using Ctrl+V.
-    
 *   Display the contents of the Instruction and Data ROMs on the 7 segment display. The rate of display should be approximately (**doesn't need to be exact**) 1 instruction/data per second (in the order of 1 instruction per second is ok). 
-
-* You can also optionally choose to display it on the LEDs (**displaying it on the 7-segment display is compulsory**). As each location contains 32 bits through we have only 16 LEDs, display them in consecutive clock cycles\*, with the most significant half-word first. 
-    
+* You can also optionally choose to display it on the LEDs (**displaying it on the 7-segment display is compulsory**). As each location contains 32 bits through we have only 16 LEDs, display them in consecutive clock cycles\*, with the most significant half-word first.  
 *   When the instruction ROM display has been completed, display the contents of the data ROM. Do this in a cyclical manner (infinite loop). Note that each ROM has a capacity of 128 words, but you will only have a small number of valid words. Hence, depending on whether you initialize the unused memory to zero or not, the values that you get after all the instructions are finished could be zero or random. This is fine and you need not skip those zeros / random values automatically. However, note that initializing the rest of the memory to zeros could make your Verilog simulation much slower.
 
 ``` 
@@ -78,10 +70,8 @@ Templates for Verilog and VHDL for all the boards can be found in [the skeleton 
     end
 ```
     
-*   When the pushbutton BTNU is pressed, the display rate should increase to approximately 4 instructions per second (4 times the original rate, whatever the original rate was). The idea is that you will be able to run the zeros/random part faster by pressing this button.
-    
+*   When the pushbutton BTNU is pressed, the display rate should increase to approximately 4 instructions per second (4 times the original rate, whatever the original rate was). The idea is that you will be able to run the zeros/random part faster by pressing this button.  
 *   When the pushbutton BTNC is pressed, the display should pause. The student should be able to pause the display and interpret a 32-bit instruction (you will need to pause it two times to see a complete instruction, as you can only display half of one instruction at a time).
-    
 *   Your hardware will have BTNU, BTNC, and clk as inputs (each is 1-bit), and 7-segment displays (32-bit) as output. These have to be mapped to the physical BTNs and 7-segment displays on the FPGA board using an appropriate .xdc file (see the [Getting Started manual](https://github.com/NUS-CG3207/lab-manuals/blob/4b14f6d6df9ea91f8b1c5293c303f1fcfeeb5846/getting_started.pdf) if you are unsure how to use design constraints). You should also uncomment the 3 lines related to clk at the beginning of the .xdc file - the create\_clock constraint is to tell the synthesis tool that our hardware works based on a 100MHz clock - info the synthesis tool needs to optimize the circuit appropriately.
 *   \[Design hint\]: You can use a 9-bit counter. Bit 0 can be used to select the upper/lower half-words. Bits 7:1 can be used as addresses to both the ROMs. Bit 8 can be used to select the output of INSTR\_MEM/DATA\_CONST\_MEM. The counter is designed such that it counts only once every ~2^26 clocks (approx) normally but will count once every ~2^24 clocks when BTNU is pressed and will pause when BTNC is pressed. This is just a suggestion - there could be other ways too to achieve the same functionality.
 *   **Please follow the guidelines given in Chapter 2** while creating your hardware. Ideally, you should use only a single clock in your entire design - the clock of every sequential device should be connected directly to this clock. i.e., you should not use a clock divider.
@@ -139,7 +129,6 @@ Program the FPGA using the simple_count.bit given in this zip file (VHDL) or thi
 
 *   Lab 3 will be evaluated in **Week 5**. The presentation schedule can be found on Canvas. 
 *   Please upload the Lab 3 files to Canvas **within 1 hour of your demo in week 5**, including the following files:  
-
 	*   **.s/.asm** file (assembly language program, if you have modified it)
 	*   **.v/.vhd** files (RTL sources aka your synthesizable HDL, testbenches)
 	*   **.xdc** file
@@ -151,18 +140,11 @@ Program the FPGA using the simple_count.bit given in this zip file (VHDL) or thi
 ## Tips
 
 * Read Chapter 2B thoroughly and make sure your code is synthesizable.
-
 * If you want the clock to be effective only under certain situations, use a clock enable.
-
 * Synchronize all inputs at the earliest possible opportunity.
-
 * Synthesize each entity / module by setting it as the top-level module and check for errors / warnings.
-
 * See the elaborated design to see if the schematic matches your intended design.
-
 * Inspect the synthesis report to see if the primitives (basic digital building blocks) inferred make sense.
-
 * Xilinx Vivado's text editor is not very good. You might want to use a better editor like Notepad++ to keep the code properly intended.
-
 * It might take a bit of time, effort, and frustration before you are able to write good synthesizable code. Sometimes, you can’t get a better teacher than experience, especially so when it comes to writing good Verilog code. Just hang in there and you will be ok soon. The best bet is to go through the notes and have the hardware in mind while writing the code.
 * It is generally a good idea to use project folder paths that do not have spaces, special characters, etc.
