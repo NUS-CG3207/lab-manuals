@@ -113,7 +113,7 @@ Copy-pasted array fix in RARS with .byte declaration
 Food for thought:
 * It may be better to use synchronous read and use block RAMs if you have many images. Else, you will quickly run out of LUTs.
 * Image pixels being sent column-wise is advantageous if the conversion tool can give a column-major format for the array. This is because multiplication by 64 is easier than by 96.
-  * Clang emits `mul` instructions when you multiply by 96, GCC does y\*64+y\*32 instead.
+  * Clang emits `mul` instructions when you multiply by 96, GCC does y\*64+y\*32 instead, in some optimization modes.
   * It is not uncommon to allocate memory that is larger than the required size to make the buffer dimensions powers of two - trading off memory for performance!
   * Possible enhancement: Implementing a mode where the row/column indices autoincrement in a row-major/column-major manner can accelerate the loading of raster images. Only one write per pixel will suffice, with the ability to feed data from a C array without maintaining separate row/column indices. You will need to implement some control bits in the control register to enable this (and an additional bit if you wish to allow the user to choose between row-major / column-major formats), along with other changes in the Wrapper. 
 * It is not possible to read back what you wrote to the OLED. Something = *OLED_DATA_ADDR does not work. These are memory-mapped peripherals; do not treat like memory. However, it is possible to modify the Wrapper and TOP to accomplish this, but has some issues such as needing 2 clock cycles for a read.
