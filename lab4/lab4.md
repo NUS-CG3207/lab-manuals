@@ -14,7 +14,7 @@ There is no need to try and craft a program specifically to demonstrate everythi
 
 * Branch instructions: `blt`, `bge`, `bltu`, `bgeu`, `jal` (with support for linking: i.e. `rd = PC + 4`), `jalr`.
   
-* Multiply (M) instructions: `mulh`, `mulhu`, `div`, `rem`, `remu`. *`mulhsu` is NOT a requirement*, as it requires some additional effort. `mulhsu` can be avoided in the compiler-generated code by avoiding signed x unsigned multiplications.
+* Multiply (M) instructions: `mulh`, `mulhu`, `div`, `rem`, `remu`. ***`mulhsu` is NOT a requirement***, as it requires some additional effort. `mulhsu` can be avoided in the compiler-generated code by avoiding signed x unsigned multiplications.
 
 Support for byte and half-word load / store is NOT a basic requirement. They can be mostly avoided by using only `int`s in your program. However, incorporating them can lead to easier to write and more efficient programs, especially when using byte-oriented peripherals such as the UART console, 8-bit images with OLED, etc.
 
