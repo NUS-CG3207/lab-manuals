@@ -3,12 +3,16 @@
 
 ## Using Compiled Code
 
-It is strongly recommended to use the new template files at <https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2/V3> if you're using compiled code. If you do not upgrade, you will have to manually segregate static constants and variables to ROM and RAM, and static variables can only be zero initialized.  
+It is strongly recommended to use the new template files at <https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2/V3> if you're using compiled code.  
+*If you do not upgrade, you will have to manually segregate static constants and variables to ROM and RAM, and static variables can only be zero-initialized.  
+*If you're upgrading from version 1 of template files, you will need to change Wrapper, TOP, and RV. Since you modified RV to implement the processor, you will need to merge changes, which is quite easy. 
+*If you're upgrading from version 2, only Wrapper and TOP will need to be changed.  
+*Use ProgramCounterv2 if your memory configuration is such that .text starts at a location other than 0. You will need to do this if you want to load a full-resolution image (see the OLED section below). 
+*Use RegFilev2 if you wish to use synchronous read, which may be used to infer block RAMs.  
 
-If you're upgrading from version 1 of template files, you will need to change Wrapper, TOP, and RV. Since you modified RV to implement the processor, you will need to merge changes, which is quite easy.  
-If you're upgrading from version 2, only Wrapper and TOP will need to be changed.  
-Use ProgramCounterv2 if your memory configuration is such that .text starts at a location other than 0. You will need to do this if you want to load a full-resolution image (see the OLED section below).  
-Use RegFilev2 if you wish to use synchronous read, which may be used to infer block RAMs.  
+You can use the .C file in the folder above as a sample. The corresponding .asm is also provided for reference.  
+
+Please note some other points below.
 
 * To the extent possible, it is a good idea to test your algorithms (e.g., masking and shifts to deal with bytes within a word.) in a standard C compiler, making appropriate changes (e.g., printf and scanf/hardcoding to simulate actual system input and output) to run in a desktop environment.
 * Follow the Godbolt settings as shown![Settings](godbolt.png).
