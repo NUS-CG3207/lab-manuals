@@ -1,6 +1,3 @@
----
-id: compiled-code
----
 # Lab 4: Using Compiled Code and New Peripherals
 
 ## Using Compiled Code

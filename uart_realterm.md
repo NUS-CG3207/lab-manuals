@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # UART and RealTerm
 
 ## UART Details

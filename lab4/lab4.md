@@ -1,6 +1,3 @@
----
-id: lab-4-manual
----
 # Lab 4: (Near) Complete Processor + Pipelining + Bells + Whistles
 
 Lab 4 involves **2 compulsory tasks** and the rest is **open-ended.**

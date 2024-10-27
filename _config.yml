@@ -1,21 +1,3 @@
 markdown: GFM
-remote_theme: zendesk/jekyll-theme-zendesk-garden@v0.3.0
+remote_theme: just-the-docs/just-the-docs
 title: CG3207 Computer Architecture
-sidebar:
-  - label: Lab 1
-    children:
-      - lab-1-manual
-  - label: Lab 2
-    children:
-      - lab-2-manual
-  - label: Lab 3
-    children:
-      - lab-3-manual
-  - label: Lab 4
-    children:
-      - lab-4-manual
-      - compiled-code
-      - pipeline
-      - hazard
-      - additional-instructions
-      - interrupts

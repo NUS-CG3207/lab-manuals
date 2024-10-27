@@ -1,4 +1,6 @@
-
+---
+nav_exclude: true
+---
 # Work in progress - Cleanup Necessary
 ******* New features in V2 *******
 - Ability to use the hexadecimal text dump from RARS directly without any conversion software or copy-pasting needed.

@@ -1,7 +1,3 @@
----
-id: lab-3-manual
----
-
 # Lab 3: Multiplication / Division units
 
 ## Tasks
