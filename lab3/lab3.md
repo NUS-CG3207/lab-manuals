@@ -41,10 +41,8 @@ Lab 3 involves 2 compulsory tasks and one open-ended task.
 *   If you are using the UART console, you can set the radix to hexadecimal in the 'Display' tab of RealTerm.
 
 ## Submission Info
-
 *   Lab 3 will be evaluated in **Week 9**. The presentation schedule can be found on Canvas. 
-*   Please upload the Lab 3 files to Canvas **within 1 hour of your demo in week 9**, including the following files:  
-    
+*   Please upload the Lab 3 files to Canvas **within 1 hour of your demo in week 9**, including the following files:
     *   **.v**/**vhd** files you have created/modified \[ RTL Sources, Testbench(es) \] 
     *   **.bit** files 
     *   **.s**/**.asm** files (assembly programs)

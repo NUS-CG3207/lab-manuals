@@ -6,10 +6,8 @@ id: pipeline
 This page will guide you through how to implement basic pipelining for the mandatory task for Lab 4. Hazard detection and resolution is covered in [this page](hazards.md).
 
 ## Notes
-
-*   The WE of the PC given in the templates is active high, while the one given in the pipelined design (Chapter 6) is active low. You might want to change the PC WE in the templates to active low to be consistent.
-
-*   Even though the pipeline registers are shown as big registers storing a lot of stuff, each data stored can be thought of as being in a separate register. In other words, in your HDL code, you don't have to try and 'collect' all the bits to form a single register entity. 
+* The WE of the PC given in the templates is active high, while the one given in the pipelined design (Chapter 6) is active low. You might want to change the PC WE in the templates to active low to be consistent.
+* Even though the pipeline registers are shown as big registers storing a lot of stuff, each data stored can be thought of as being in a separate register. In other words, in your HDL code, you don't have to try and 'collect' all the bits to form a single register entity. 
 
 ## Systematic procedure for Pipelining
 
@@ -30,9 +28,7 @@ Follow these steps to implement pipelining.
 3. Verify that your design works **EXACTLY as it did previously**, without any changes to the assembly language program. We have NOT yet inferred any registers, so there should not be any pipelining going on (yet!). If something has broken, now is a good time to debug it. 
 
 4. Now, we implement the pipeline registers. 
-
 	* **VHDL**: Move all move all the signals which are supposed to go through a particular pipeline register into one clocked process in ARM/RISC-V architecture (everything in one big clocked process is fine too, but it is better to keep it in separate process for better organization).
-
 	* **Verilog**: Change the combinational `always @(*)` to `always @(posedge clk)`.
 
 5. Initialize all all your signals and registers to zero Add a condition that sets all these signals and registers to zero when RESET is asserted, and otherwise, assigns the RHS to the LHS at the clock edge. 
