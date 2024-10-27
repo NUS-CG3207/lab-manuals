@@ -1,3 +1,6 @@
+---
+nav_order: 2
+---
 # Installation Guide for Vivado
 
 For this course, we recommend using Vivado 2023.2. Any other version of Vivado you have installed will probably work; however, you will need support for 7 series FPGAs to be able to use the Nexys 4 board. 
