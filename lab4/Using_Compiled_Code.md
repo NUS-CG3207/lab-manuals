@@ -1,4 +1,6 @@
-
+---
+id: compiled-code
+---
 # Using Compiled Code and New Peripherals
 
 ## Using Compiled Code

@@ -1,3 +1,7 @@
+---
+id: lab-1-manual
+---
+
 # Lab 1: Familiarisation with Assembly Language and HDL/FPGA
 
 ## Information
