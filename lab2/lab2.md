@@ -1,3 +1,6 @@
+---
+nav_order: 4
+---
 Lab 2: Implementation of a RISC-V 32-bit (RV32I) Processor
 ==========================================================
 

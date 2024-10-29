@@ -1,3 +1,6 @@
+---
+nav_order: 8
+---
 # RISC-V Memory Map
 
 ### Memory Map of OUR\* RISC-V Processor

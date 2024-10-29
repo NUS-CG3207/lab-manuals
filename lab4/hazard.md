@@ -1,3 +1,7 @@
+---
+nav_order: 3
+parent: "Lab 4: (Near) Complete Processor + Pipelining + Bells + Whistles"
+---
 # Lab 4 Enhancement: Resolving Hazards
 
 Here are the general steps to add hardware to resolve hazards.

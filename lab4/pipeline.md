@@ -1,3 +1,7 @@
+---
+nav_order: 2
+parent: "Lab 4: (Near) Complete Processor + Pipelining + Bells + Whistles"
+---
 # Lab 4: Implementing Pipelining
 
 This page will guide you through how to implement basic pipelining for the mandatory task for Lab 4. Hazard detection and resolution is covered in [this page](hazards.md).

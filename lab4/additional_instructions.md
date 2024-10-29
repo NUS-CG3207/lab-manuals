@@ -1,3 +1,7 @@
+---
+nav_order: 4
+parent: "Lab 4: (Near) Complete Processor + Pipelining + Bells + Whistles"
+---
 # Lab 4 Enhancement: Implementing additional instructions
 
 You may choose to implement some additional instructions for your processor for your enhancement, or features of instructions that have not been fully implemented. The score you get for this will depend on how much additional logic you need to add for these features.

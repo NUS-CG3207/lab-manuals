@@ -1,3 +1,7 @@
+---
+nav_order: 5
+parent: "Lab 4: (Near) Complete Processor + Pipelining + Bells + Whistles"
+---
 # Lab 4 Enhancement: Interrupt generation and exception handling
 
 External interrupt generation logic can be done inside the wrapper fairly easily. For example, if you want an interrupt to be raised when any of the pushbuttons are pressed, you can do interrupt = `PB[3] | PB[2] | PB[1] | PB[0]`. This interrupt can be then be fed into ARM/RV module from the wrapper.
