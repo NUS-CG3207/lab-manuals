@@ -24,8 +24,7 @@ As long as your code works after inserting the sufficient `NOP`s, this task requ
 For some tips on implementing pipelining, [see this page](pipeline.md).
 
 The real benefit of pipelining is higher clock speeds. For example, it's highly unlikely that your design runs at 100 MHz without pipelining. You'll most likely get a critical warning that some timing constraints are not met. The design may or may not run on the board, but if you got a timing warning, the functionality is not reliable. It's pointless to have a pipelined design that runs at 1 Hz. So it is a good idea to think of an application program that benefits from the higher clock speeds.
-Frequencies of up to 100 MHz can be achieved by changing CLK_DIV_BITS in TOP.vhd. However, note that even with the standard 5-stage pipeline, 100 MHz may not always be achievable, especially if your memory size is big.
-Up to ~430 MHz is possible though unlikely with a 5-stage pipeline. To increase clock beyond 100 MHz, you will need to make use of the FPGA built-in clocking resource called MMCM. This can be configured using a clocking wizard.
+Frequencies of up to 100 MHz can be achieved by changing CLK_DIV_BITS in TOP.vhd.
 
 ## Open-ended Enhancement \[10 marks\]
 
