@@ -42,4 +42,15 @@ Follow these steps to implement pipelining.
 
 ## Increasing the clock speed 
 
-Now that you have pipelined your processor, you should be able to run it without any clock division, at the full 100 MHz. Change `CLK_DIV_BITS` to test if this is the case. If you are feeling adventurous, explore using Vivado's Clocking Wizard to increase the clock speed even further using Phase Locked Loops (PLLs). This is not a requirement, and you can explore this option by yourself. 
+Now that you have pipelined your processor, you might be able to run it without any clock division, at the full 100 MHz, especially . Change `CLK_DIV_BITS` to test if this is the case. 
+
+However, note that even with the standard 5-stage pipeline, 100 MHz may not always be achievable, especially if your memory size is big.
+Up to ~430 MHz is possible though unlikely with a 5-stage pipeline. To increase clock beyond 100 MHz, you will need to make use of the FPGA built-in clocking resource called MMCM (which used phase locked loops). This can be configured using a clocking wizard.
+
+
+Tip for faster clock speeds:
+Identify the bottleneck by looking at that timing report.
+* Use smaller memories. 
+* For larger memories, use block ram templates, and allow at least 2 clock edges, and maybe even 3 for a read. This of course is a major design change as the pipeline is no longer 5 stage
+* Use a hierarchy of memories.
+* If the bottleneck is the execute stage, try to make it shorter by moving the PC logic to M stage. 
