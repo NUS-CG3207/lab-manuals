@@ -7,6 +7,7 @@ parent: "Lab 4: (Near) Complete Processor + Pipelining + Bells + Whistles"
 ## Using Compiled Code
 
 It is strongly recommended to use the new template files at <https://github.com/NUS-CG3207/lab-skeletons/tree/main/lab2/V3> if you're using compiled code.  
+
 * If you do not upgrade, you will have to manually segregate static constants and variables to ROM and RAM, and static variables can only be zero-initialized.  
 * If you're upgrading from version 1 of template files, you will need to change Wrapper, TOP, and RV. Since you modified RV to implement the processor, you will need to merge changes, which is quite easy. 
 * If you're upgrading from version 2, only Wrapper and TOP will need to be changed.  
@@ -28,9 +29,9 @@ Please note some other points below.
 * Check the actual number of instructions (not lines of code as some instructions are pseudoinstructions). Make sure the size is set in Wrapper IROM_DEPTH_BITS as appropriate. e.g., should be 10 if the number of instructions is >128 and <=255.
 * DMEM_DEPTH_BITS should also be changed as appropriate. It should be 10 for using the original peripheral addresses in the previous versions of the wrapper (as the DROM+DRAM is 256 words). However, if you need more memory (DRAM+DROM) such as what you will need when you load images, change this. STACK_INIT and MMIO_BASE in your C source code should also be modified to correspond to this.
   * Stack pointer is set to point to the top of RAM initially (STACK_INIT). The stack is full-descending, so the first value is pushed to STACK_INIT-4.
-  * In the example C code in the repo above, this is done via inline assembly. Alternatives are
-   * Insert an assembly statement `la sp, STACK_INIT` as the first line in your assembly code .text section.
-   * Hard-code `RegBank[5'b00010]` initialization value to `STACK_INIT` via an `initial` block in RegFile.v. Of course, `STACK_INIT` should have a proper value via a `.equ` or be passed as a parameter to the RegFile module.
+  * In the example C code (in the repo above), this is done via inline assembly. Alternatives are
+    * Insert an assembly statement `la sp, STACK_INIT` as the first line in your assembly code .text section.
+    * Hard-code `RegBank[5'b00010]` initialization value to `STACK_INIT` via an `initial` block in RegFile.v. Of course, `STACK_INIT` should have a proper value via a `.equ` or be passed as a parameter to the RegFile module.
 * Make sure the correct memory config is selected in RARS.
 * The first few instructions that save Callee saved registers to the stack can be deleted safely - do a sanity check to see if this is really the case nevertheless. There is no caller for main(). Ensure that the inline assembly to set the stack pointer (`sp`) to the correct value should be the first useful instruction.
 * Make sure the main function code is at the beginning. Some compilers such as gcc may put this in the end, in which case you need to rearrange the functions in assembly. Our absolute bare-metal system does not have a linker/loader/startup code to start at the main if it is not in the beginning.
@@ -92,11 +93,12 @@ The easiest way to load a [raster](https://en.wikipedia.org/wiki/Raster_graphics
  
 It is also possible to receive the image at runtime via UART or initialise it in your HDL via a .mem file. However, these will limit your ability to simulate in RARS.
 
-Before you think of loading a raster image - Make sure your data memory is big enough to hold the image. Adjust the depth/size in both HDL and C!   
+Before you think of loading a raster image - Make sure your data memory is big enough to hold the image. Adjust the depth/size in both HDL and C!
 A not-too-complex vector image may not need a memory size increase or memory configuration change.
 
 For a full-resolution raster image (96x64), the data memory size needed will exceed the 0x2000 size provided by the 'compact, text at 0' configuration that we have been using. You will have to resort to the RARS default configuration in this case.  
 This requires changing
+
 * initialization and reset value of the program counter in ProgramCounterv2 file (2 places in total) to 0x00400000.
 * IROM_BASE and DMEM_BASE to 0x00400000 and 0x10010000 respectively in Wrapperv3 as well as the C code 
 * DMEM_DEPTH_BITS in Wrapperv3. A full-resolution image with even 8-bit colour mode requires 6144 bytes, which means a DMEM_DEPTH_BITS of at least 13! The C code DMEM_SIZE should be 2^DMEM_DEPTH_BITS which is 0x2000 for DMEM_DEPTH_BITS of 13.
@@ -114,6 +116,7 @@ Copy-pasted array fix in RARS with .byte declaration
 
 
 Food for thought:
+
 * It may be better to use synchronous read and use block RAMs if you have many images. Else, you will quickly run out of LUTs.
 * Image pixels being sent column-wise is advantageous if the conversion tool can give a column-major format for the array. This is because multiplication by 64 is easier than by 96.
   * Clang emits `mul` instructions when you multiply by 96, GCC does y\*64+y\*32 instead, in some optimization modes.
