@@ -35,7 +35,7 @@ Follow these steps to implement pipelining.
 
 4. Now, we implement the pipeline registers.
 
-* **VHDL**: Move all move all the signals which are supposed to go through a particular pipeline register into one clocked process in ARM/RISC-V architecture (everything in one big clocked process is fine too, but it is better to keep it in separate process for better organization).
+* **VHDL**: Move all the signals that are supposed to go through a particular pipeline register into one clocked process in ARM/RISC-V architecture (everything in one big clocked process is fine too, but it is better to keep it in separate processes for better organization).
   * **Verilog**: Change the combinational `always @(*)` to `always @(posedge clk)`.
 
 5. Initialize all all your signals and registers to zero Add a condition that sets all these signals and registers to zero when RESET is asserted, and otherwise, assigns the RHS to the LHS at the clock edge.
@@ -45,7 +45,7 @@ Follow these steps to implement pipelining.
 * **VHDL**: `CLK'event and CLK='1'` becomes `CLK'event and CLK='0'`.
 * **Verilog**: `always @(posedge clk)` becomes `always @(negedge clk)`.
 
-7. Your processor should now be pipelined, so now your old program may not work as it did. You will need to add `NOP`s wherever there is any kind of hazard, to avoid these. For a start, just insert NOPs such that each pair of instructions having a data hazard are spaced by at least 2 instructions (for example, insert 2 NOPs if the two instructions are consecutive). After each branch, insert 4 NOPs.
+7. Your processor should now be pipelined, your old program may not work as it did. You will need to add `NOP`s wherever there is any kind of hazard, to avoid these. For a start, just insert NOPs such that each pair of instructions having a data hazard is spaced by at least 2 instructions (for example, insert 2 NOPs if the two instructions are consecutive). After each branch, insert 4 NOPs.
 
 8. Verify that your design works as it used to (it will just be slower because of all the NOPs).
 
@@ -53,10 +53,10 @@ For hazard resolution hardware (not a basic requirement), follow the design in C
 
 ## Increasing the clock speed
 
-Now that you have pipelined your processor, you might be able to run it without any clock division, at the full 100 MHz, especially . Change `CLK_DIV_BITS` to test if this is the case.
+Now that you have pipelined your processor, you might be able to run it without any clock division, at the full 100 MHz, especially if your program memory and data memory are small. Change `CLK_DIV_BITS` to test if this is the case.
 
 However, note that even with the standard 5-stage pipeline, 100 MHz may not always be achievable, especially if your memory size is big.
-Up to ~430 MHz is possible though unlikely with a 5-stage pipeline. To increase clock beyond 100 MHz, you will need to make use of the FPGA built-in clocking resource called MMCM (which used phase locked loops). This can be configured using a clocking wizard.
+Up to ~430 MHz is possible though unlikely with a 5-stage pipeline. To increase the clock beyond 100 MHz, you will need to make use of the FPGA built-in clocking resource called MMCM (which uses phase-lo loops). This can be configured using a clocking wizard.
 
 Tip for faster clock speeds:
 Identify the bottleneck by looking at that timing report.
