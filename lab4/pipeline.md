@@ -56,7 +56,7 @@ For hazard resolution hardware (not a basic requirement), follow the design in C
 Now that you have pipelined your processor, you might be able to run it without any clock division, at the full 100 MHz, especially if your program memory and data memory are small. Change `CLK_DIV_BITS` to test if this is the case.
 
 However, note that even with the standard 5-stage pipeline, 100 MHz may not always be achievable, especially if your memory size is big.
-Up to ~430 MHz is possible though unlikely with a 5-stage pipeline. To increase the clock beyond 100 MHz, you will need to make use of the FPGA built-in clocking resource called MMCM (which uses phase-lo loops). This can be configured using a clocking wizard.
+Up to ~430 MHz is possible though unlikely with a 5-stage pipeline. To increase the clock beyond 100 MHz, you will need to make use of the FPGA built-in clocking resource called MMCM (which uses phase-locked loops). This can be configured using a clocking wizard.
 
 Tip for faster clock speeds:
 Identify the bottleneck by looking at that timing report.
