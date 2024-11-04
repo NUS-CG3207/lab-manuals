@@ -45,7 +45,7 @@ Please note some other points below.
 
 ## Using New Peripherals
 
-The new peripherals cycle counter, accelerometer, and OLED display peripheral register info can be found in the Wrapper HDL code.  
+The new peripherals cycle counter, accelerometer, and OLED display peripheral register info can be found in the Wrapper HDL code. You will need to add ADXL362Ctrl.vhd, SPI_If.vhd, pmodoledrgb_bitmap.vhd to your project, along with Wrapperv3.v.
 
 ### Cycle Counter
 
