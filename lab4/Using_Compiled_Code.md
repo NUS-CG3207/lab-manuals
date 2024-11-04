@@ -12,7 +12,8 @@ It is strongly recommended to use the new template files at <https://github.com/
 * If you're upgrading from version 1 of template files, you will need to change Wrapper, TOP, and RV. Since you modified RV to implement the processor, you will need to merge changes, which is quite easy. 
 * If you're upgrading from version 2, only Wrapper and TOP will need to be changed.  
 * Use ProgramCounterv2 if your memory configuration is such that .text starts at a location other than 0. You will need to do this if you want to load a full-resolution image (see the OLED section below). 
-* Use RegFilev2 if you wish to use synchronous read, which may be used to infer block RAMs.  
+* Use RegFilev2 if you wish to use synchronous read, which may be used to infer block RAMs.
+* You will need to add ADXL362Ctrl.vhd, SPI_If.vhd, pmodoledrgb_bitmap.vhd to your project as it is needed in TOP v3.
 
 You can use the .C file in the folder above as a sample. The corresponding .asm is also provided for reference.  
 
@@ -45,7 +46,7 @@ Please note some other points below.
 
 ## Using New Peripherals
 
-The new peripherals cycle counter, accelerometer, and OLED display peripheral register info can be found in the Wrapper HDL code. You will need to add ADXL362Ctrl.vhd, SPI_If.vhd, pmodoledrgb_bitmap.vhd to your project, along with Wrapperv3.v.
+The register info for the new peripherals cycle counter, accelerometer, and OLED display peripheral register can be found in the Wrapper (v3) HDL code. 
 
 ### Cycle Counter
 
