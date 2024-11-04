@@ -21,7 +21,7 @@ Follow these steps to implement pipelining.
 
 * **Verilog**: Use a combinational always block with non-blocking assignments. For example:
 
-  ```
+  ``` verilog
   always @(*) begin
    ExtImm_E <= ExtImm_D;
   end
